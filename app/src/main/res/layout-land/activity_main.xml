@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main">
+
+    <fragment
+        android:id="@+id/frag_list"
+        android:name="be.kristofheyndels.mobdev.mobileherex18.ListFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/frag_detail"
+        android:name="be.kristofheyndels.mobdev.mobileherex18.DetailFragment"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+
+</android.widget.LinearLayout>
