@@ -6,15 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Spinner
             android:id="@+id/drop_category"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
-    </RelativeLayout>
+        <ListView
+            android:id="@+id/v_results"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9" />
+
+    </LinearLayout>
 
 </FrameLayout>
