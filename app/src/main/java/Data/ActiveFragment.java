@@ -1,4 +1,6 @@
 package Data;
 
-public class ActiveFragment {
+public enum ActiveFragment {
+    ListFragment,
+    DetailFragment
 }

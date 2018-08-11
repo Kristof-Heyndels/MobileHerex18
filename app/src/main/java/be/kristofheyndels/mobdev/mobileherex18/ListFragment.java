@@ -2,7 +2,6 @@ package be.kristofheyndels.mobdev.mobileherex18;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,11 +23,8 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import Data.Categories;
@@ -37,7 +33,10 @@ public class ListFragment extends Fragment {
 
     private static final String TAG = "ListFragment";
 
-    private Map<String,String> catMap = new HashMap<>();
+    private Spinner dropCategory;
+    private static int selectedPosition = 0;
+
+    private Map<String, String> catMap = new HashMap<>();
     private OnFragmentInteractionListener mListener;
 
     public ListFragment() {
@@ -48,6 +47,9 @@ public class ListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null)
+            selectedPosition = savedInstanceState.getInt("selectedPosition");
     }
 
     @Override
@@ -62,7 +64,7 @@ public class ListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Filling Spinner with categories
-        Spinner dropCategory = view.findViewById(R.id.drop_category);
+        dropCategory = view.findViewById(R.id.drop_category);
         populateCategorySpinner(dropCategory);
     }
 
@@ -81,6 +83,13 @@ public class ListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("selectedPosition", dropCategory.getSelectedItemPosition());
     }
 
     /**
@@ -111,13 +120,15 @@ public class ListFragment extends Fragment {
                             JSONObject jsonResponse = new JSONObject(response);
                             Iterator<String> keys = jsonResponse.keys();
 
-                           while(keys.hasNext()){
-                               String name = keys.next();
-                               Categories.addEntry(name, jsonResponse.getString(name));
-                           }
+                            while (keys.hasNext()) {
+                                String name = keys.next();
+                                Categories.addEntry(name, jsonResponse.getString(name));
+                            }
 
-                            ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, Categories.getKeys());
+                            ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, Categories.getKeys());
                             spinner.setAdapter(catAdapter);
+                            spinner.setSelection(selectedPosition);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -125,7 +136,7 @@ public class ListFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.wtf(TAG,"Response: " + error);
+                Log.wtf(TAG, "Response: " + error);
             }
         });
 

@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <fragment android:name="be.kristofheyndels.mobdev.mobileherex18.ListFragment"
-    android:id="@+id/frag_container"
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    android:layout_height="match_parent" />
+    tools:context=".MainActivity"
+    android:id="@+id/frag_container">
 
 
 </android.widget.LinearLayout>
