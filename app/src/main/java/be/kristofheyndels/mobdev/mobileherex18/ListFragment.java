@@ -126,6 +126,7 @@ public class ListFragment extends Fragment {
                             }
 
                             ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, Categories.getKeys());
+                            catAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
                             spinner.setAdapter(catAdapter);
                             spinner.setSelection(selectedPosition);
 

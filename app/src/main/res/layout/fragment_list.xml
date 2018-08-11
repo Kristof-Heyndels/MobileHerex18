@@ -15,13 +15,13 @@
             android:id="@+id/drop_category"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.15" />
 
         <ListView
-            android:id="@+id/v_results"
+            android:id="@+id/lv_results"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.9" />
+            android:layout_weight="0.85" />
 
     </LinearLayout>
 

@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">MobileHerex18</string>
+    <string name="app_name">Swapi Client</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_list_fragment">Hello list fragment</string>
     <string name="hello_detail_fragment">Hello detail fragment</string>
     <string name="hello_main_activity">Hello Main Activity</string>
+    <string name="star_wars_api">STARWARS DB</string>
 </resources>

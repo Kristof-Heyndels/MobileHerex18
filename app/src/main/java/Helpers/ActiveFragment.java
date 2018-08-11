@@ -1,4 +1,4 @@
-package Data;
+package Helpers;
 
 public enum ActiveFragment {
     ListFragment,

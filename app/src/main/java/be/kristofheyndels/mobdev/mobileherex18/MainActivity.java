@@ -5,8 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-import Data.ActiveFragment;
+import Helpers.ActiveFragment;
 
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, DetailFragment.OnFragmentInteractionListener {
@@ -23,7 +24,12 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 

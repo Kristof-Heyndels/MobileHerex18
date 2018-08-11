@@ -1,6 +1,5 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:layout_width="match_parent"
@@ -8,7 +7,7 @@
     android:lines="1"
     android:singleLine="true"
     android:textAlignment="inherit"
-    android:textAppearance="@android:style/TextAppearance.Holo.Light.Inverse"
     app:autoSizePresetSizes="@array/autosize_text_sizes"
     app:autoSizeTextType="uniform"
-    app:font="@font/starjout" />
+    app:fontStyle="italic"
+    app:fontFamily="@font/starjout" />
