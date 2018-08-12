@@ -11,14 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +21,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import Data.Categories;
+import Helpers.JsonCallBack;
+import Helpers.SWAPI;
+import Model.Categories;
 
 public class ListFragment extends Fragment {
 
@@ -36,13 +32,14 @@ public class ListFragment extends Fragment {
     private Spinner dropCategory;
     private static int selectedPosition = 0;
 
+    private ListView lvResults;
+
     private Map<String, String> catMap = new HashMap<>();
     private OnFragmentInteractionListener mListener;
 
     public ListFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,9 +60,16 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Filling Spinner with categories
         dropCategory = view.findViewById(R.id.drop_category);
-        populateCategorySpinner(dropCategory);
+        lvResults = view.findViewById(R.id.lv_results);
+
+        //Filling Spinner with categories
+        SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                populateSpinner(result);
+            }
+        });
     }
 
     @Override
@@ -107,41 +111,34 @@ public class ListFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void populateCategorySpinner(final Spinner spinner) {
+    private void populateSpinner(JSONObject result) {
+        Iterator<String> keys = result.keys();
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getContext());
+        try {
+            while (keys.hasNext()) {
+                String name = keys.next();
+                Categories.addEntry(name, result.getString(name));
+            }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, MainActivity.URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            Iterator<String> keys = jsonResponse.keys();
+            ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, Categories.getKeys());
+            catAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            dropCategory.setAdapter(catAdapter);
+            dropCategory.setSelection(selectedPosition);
 
-                            while (keys.hasNext()) {
-                                String name = keys.next();
-                                Categories.addEntry(name, jsonResponse.getString(name));
-                            }
+            populateList((String)dropCategory.getSelectedItem());
 
-                            ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, Categories.getKeys());
-                            catAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-                            spinner.setAdapter(catAdapter);
-                            spinner.setSelection(selectedPosition);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
+    private void populateList(String selectedCategory) {
+        //Filling List with selected category items
+        SWAPI.getResultsFromURL(getContext(), Categories.getValueFromKey(selectedCategory), new JsonCallBack() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.wtf(TAG, "Response: " + error);
+            public void onSuccess(JSONObject result) {
+                Log.wtf(TAG, "Result: " + result);
             }
         });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
     }
 }
