@@ -1,9 +1,9 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
-public class Film extends SwapiObject {
+public class Film extends SwapiObject{
 
     private String title;
     private int episode_id;
@@ -11,17 +11,11 @@ public class Film extends SwapiObject {
     private String director;
     private String producer;
     private Date release_date;
-    private HashMap<String, String> species;
-    private HashMap<String, String> starships;
-    private HashMap<String, String> vehicles;
-    private HashMap<String, String> characters;
-    private HashMap<String, String> planets;
-    private String created;
-    private String edited;
-
-    public Film(String url) {
-        super(url);
-    }
+    private ArrayList<String> species;
+    private ArrayList<String> starships;
+    private ArrayList<String> vehicles;
+    private ArrayList<String> characters;
+    private ArrayList<String> planets;
 
     public String getTitle() {
         return title;
@@ -47,31 +41,28 @@ public class Film extends SwapiObject {
         return release_date;
     }
 
-    public HashMap<String, String> getSpecies() {
+    public ArrayList<String> getSpecies() {
         return species;
     }
 
-    public HashMap<String, String> getStarships() {
+    public ArrayList<String> getStarships() {
         return starships;
     }
 
-    public HashMap<String, String> getVehicles() {
+    public ArrayList<String> getVehicles() {
         return vehicles;
     }
 
-    public HashMap<String, String> getCharacters() {
+    public ArrayList<String> getCharacters() {
         return characters;
     }
 
-    public HashMap<String, String> getPlanets() {
+    public ArrayList<String> getPlanets() {
         return planets;
     }
 
-    public String getCreated() {
-        return created;
-    }
-
-    public String getEdited() {
-        return edited;
+    @Override
+    public String getDisplayName(){
+        return title;
     }
 }

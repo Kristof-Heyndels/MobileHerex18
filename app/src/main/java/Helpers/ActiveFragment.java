@@ -4,3 +4,4 @@ public enum ActiveFragment {
     ListFragment,
     DetailFragment
 }
+

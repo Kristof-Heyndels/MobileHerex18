@@ -8,8 +8,8 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:background">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">#ffd700</item>
-        <item name="android:actionMenuTextColor">#ffd700</item>
+        <item name="android:textColor">@color/gold</item>
+        <item name="android:actionMenuTextColor">@color/gold</item>
     </style>
 
     <style name="AppTheme.ActionBar" parent="AppTheme">

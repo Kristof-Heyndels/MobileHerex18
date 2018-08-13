@@ -1,9 +1,36 @@
 package Model;
 
-abstract class SwapiObject {
-    private final String URL;
+public abstract class SwapiObject {
 
-    public SwapiObject(String url) {
-        URL = url;
+    private String url;
+    private String created;
+    private String edited;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getEdited() {
+        return edited;
+    }
+
+    public void setEdited(String edited) {
+        this.edited = edited;
+    }
+
+    public String getDisplayName() {
+        return null;
     }
 }
