@@ -9,9 +9,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -20,14 +20,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import Helpers.JsonCallBack;
+import Helpers.MyArrayAdapter;
 import Helpers.SWAPI;
 import Model.Categories;
+import Model.Film;
 import Model.FilmResults;
 import Model.Person;
 import Model.PersonResults;
@@ -37,7 +37,6 @@ import Model.Species;
 import Model.SpeciesResults;
 import Model.Starship;
 import Model.StarshipResults;
-import Model.SwapiObject;
 import Model.Vehicle;
 import Model.VehicleResults;
 
@@ -46,10 +45,12 @@ public class ListFragment extends Fragment {
     private static final String TAG = "ListFragment";
 
     private Spinner dropCategory;
-    private static int selectedPosition = 0;
     private ListView lvResults;
+    private List<String> resultList;
 
     private OnFragmentInteractionListener mListener;
+
+    private int selectedCategory = 0;
 
     public ListFragment() {
         // Required empty public constructor
@@ -58,10 +59,6 @@ public class ListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (savedInstanceState != null)
-            selectedPosition = savedInstanceState.getInt("selectedPosition");
-
     }
 
     @Override
@@ -76,15 +73,45 @@ public class ListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         dropCategory = view.findViewById(R.id.drop_category);
-        lvResults = view.findViewById(R.id.lv_results);
-
-        //Filling Spinner with categories
-        SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
+        dropCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onSuccess(JSONObject result) {
-                populateSpinner(result);
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                buildListAdapter((String)dropCategory.getSelectedItem());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+
+        lvResults = view.findViewById(R.id.lv_results);
+
+        if (savedInstanceState == null) {
+            SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    Iterator<String> keys = result.keys();
+
+                    try {
+                        while (keys.hasNext()) {
+                            String name = keys.next();
+                            Categories.addEntry(name, result.getString(name));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    populateSpinner();
+                }
+            });
+        } else {
+            selectedCategory = savedInstanceState.getInt("selectedItem");
+            resultList = savedInstanceState.getStringArrayList("list");
+
+            populateSpinner();
+            populateList();
+        }
     }
 
     @Override
@@ -108,7 +135,8 @@ public class ListFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putInt("selectedPosition", dropCategory.getSelectedItemPosition());
+        outState.putInt("selectedItem", dropCategory.getSelectedItemPosition());
+        outState.putStringArrayList("list", ((MyArrayAdapter) lvResults.getAdapter()).getStringList());
     }
 
     /**
@@ -126,25 +154,11 @@ public class ListFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void populateSpinner(JSONObject result) {
-        Iterator<String> keys = result.keys();
-
-        try {
-            while (keys.hasNext()) {
-                String name = keys.next();
-                Categories.addEntry(name, result.getString(name));
-            }
-
-            ArrayAdapter<String> catAdapter = new ArrayAdapter<>(getContext(), R.layout.spinner_item, Categories.getKeys());
-            catAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            dropCategory.setAdapter(catAdapter);
-            dropCategory.setSelection(selectedPosition);
-
-            buildListAdapter((String) dropCategory.getSelectedItem());
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    private void populateSpinner() {
+        ArrayAdapter<String> catAdapter = new MyArrayAdapter(getContext(), R.layout.spinner_item, Categories.getKeys());
+        catAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        dropCategory.setAdapter(catAdapter);
+        dropCategory.setSelection(selectedCategory);
     }
 
     private void buildListAdapter(final String selectedCategory) {
@@ -152,73 +166,57 @@ public class ListFragment extends Fragment {
         SWAPI.getResultsFromURL(getContext(), Categories.getValueFromKey(selectedCategory), new JsonCallBack() {
             @Override
             public void onSuccess(JSONObject result) {
-                List<Map<String, String>> resultMapList = buildResultMapList(selectedCategory, result);
-
-                android.widget.ListAdapter adapter = new SimpleAdapter(getContext(), resultMapList, R.layout.list_item,
-                        new String[]{"display"},
-                        new int[]{R.id.tv_list_display});
-
-                lvResults.setAdapter(adapter);
+               resultList = buildResultList(selectedCategory, result);
+                populateList();
             }
         });
     }
 
-    private List<Map<String, String>> buildResultMapList(String category, JSONObject json) {
-        List<Map<String, String>> returnList = new ArrayList<>();
+    private void populateList() {
+        //TODO sometimes crashes app
+        ArrayAdapter adapter = new MyArrayAdapter(getContext(), R.layout.list_item, R.id.tv_list_display, resultList);
+        lvResults.setAdapter(adapter);
+    }
+
+    private List<String> buildResultList(String category, JSONObject json) {
+        List<String> returnList = new ArrayList<>();
         Gson gson = new Gson();
 
         if (category.toLowerCase().equals("films")) {
             FilmResults results = gson.fromJson(json.toString(), FilmResults.class);
 
-            for (SwapiObject o : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-                map.put("display", o.getDisplayName());
-                returnList.add(map);
+            for (Film f : results.getResults()) {
+                returnList.add(f.getDisplayName());
             }
         } else if (category.toLowerCase().equals("people")) {
             PersonResults results = gson.fromJson(json.toString(), PersonResults.class);
 
             for (Person per : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("display", per.getDisplayName());
-                returnList.add(map);
+                returnList.add(per.getDisplayName());
             }
         } else if (category.toLowerCase().equals("planets")) {
             PlanetResults results = gson.fromJson(json.toString(), PlanetResults.class);
 
             for (Planet pla : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("display", pla.getDisplayName());
-                returnList.add(map);
+                returnList.add(pla.getDisplayName());
             }
         } else if (category.toLowerCase().equals("species")) {
             SpeciesResults results = gson.fromJson(json.toString(), SpeciesResults.class);
 
             for (Species sp : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("display", sp.getDisplayName());
-                returnList.add(map);
+                returnList.add(sp.getDisplayName());
             }
         } else if (category.toLowerCase().equals("starships")) {
             StarshipResults results = gson.fromJson(json.toString(), StarshipResults.class);
 
             for (Starship sh : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("display", sh.getDisplayName());
-                returnList.add(map);
+                returnList.add(sh.getDisplayName());
             }
         } else if (category.toLowerCase().equals("vehicles")) {
             VehicleResults results = gson.fromJson(json.toString(), VehicleResults.class);
 
             for (Vehicle v : results.getResults()) {
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("display", v.getDisplayName());
-                returnList.add(map);
+                returnList.add(v.getDisplayName());
             }
         }
 

@@ -17,9 +17,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     private static ActiveFragment activeFragment = ActiveFragment.ListFragment;
 
     private ListFragment listFragment;
-    private int listFragmenId;
     private DetailFragment detailFragment;
-    private int detailFragmentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,29 +31,31 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
         FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            listFragmenId = R.id.frag_container;
-            detailFragmentId = R.id.frag_container;
+        if (savedInstanceState != null) {
+            listFragment = (ListFragment) getSupportFragmentManager().getFragment(savedInstanceState, "listFragment");
+            detailFragment = (DetailFragment) getSupportFragmentManager().getFragment(savedInstanceState, "detailFragment");
+        }
 
+        if (listFragment == null) {
+            listFragment = new ListFragment();
+        }
+        if (detailFragment == null) {
+            detailFragment = new DetailFragment();
+        }
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             if (activeFragment == ActiveFragment.ListFragment) {
-                listFragment = new ListFragment();
-                trans.replace(listFragmenId, listFragment);
+                trans.replace(R.id.frag_container, listFragment);
             } else {
-                detailFragment = new DetailFragment();
-                trans.replace(detailFragmentId, detailFragment);
+                trans.replace(R.id.frag_container, detailFragment);
             }
             trans.addToBackStack(null);
             trans.commit();
         } else {
-            listFragmenId = R.id.frag_list;
-            detailFragmentId = R.id.frag_detail;
-
-            listFragment = new ListFragment();
-            trans.replace(listFragmenId, listFragment);
+            trans.replace(R.id.frag_container, listFragment);
             trans.addToBackStack(null);
 
-            detailFragment = new DetailFragment();
-            trans.replace(detailFragmentId, detailFragment);
+            trans.replace(R.id.frag_detail, detailFragment);
             trans.addToBackStack(null);
 
             trans.commit();
@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+
+        if (listFragment.isAdded())
+            getSupportFragmentManager().putFragment(outState, "listFragment", listFragment);
+
+        if (detailFragment.isAdded())
+            getSupportFragmentManager().putFragment(outState, "detailFragment", detailFragment);
     }
 
     @Override
