@@ -44,4 +44,15 @@
     <string name="climate_label">Climate:</string>
     <string name="residents_label">Residents:</string>
 
+    <!-- fragment_details_species -->
+    <string name="classification_label">Classification:</string>
+    <string name="designation_label">Designation:</string>
+    <string name="average_height_label">Average Height:</string>
+    <string name="average_lifespan_label">Average Lifespan:</string>
+    <string name="eye_colours_label">Eye Colours:</string>
+    <string name="language_label">Language:</string>
+    <string name="hair_colours_label">Hair colours:</string>
+    <string name="skin_colours_label">Skin Colours:</string>
+    <string name="people_label">People:</string>
+
 </resources>

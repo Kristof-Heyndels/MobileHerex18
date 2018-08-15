@@ -4,4 +4,210 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_label" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_name_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_name_label"
+        android:layout_toRightOf="@id/tv_name_label" />
+
+    <TextView
+        android:id="@+id/tv_classification_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name_label"
+        android:text="@string/classification_label" />
+
+    <TextView
+        android:id="@+id/tv_classification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_classification_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_classification_label"
+        android:layout_toRightOf="@id/tv_classification_label" />
+
+    <TextView
+        android:id="@+id/tv_designation_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_classification_label"
+        android:text="@string/designation_label" />
+
+    <TextView
+        android:id="@+id/tv_designation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_designation_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_designation_label"
+        android:layout_toRightOf="@id/tv_designation_label" />
+
+    <TextView
+        android:id="@+id/tv_average_height_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_designation_label"
+        android:text="@string/average_height_label" />
+
+    <TextView
+        android:id="@+id/tv_average_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_average_height_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_average_height_label"
+        android:layout_toRightOf="@id/tv_average_height_label" />
+
+    <TextView
+        android:id="@+id/tv_average_lifespan_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_average_height_label"
+        android:text="@string/average_lifespan_label" />
+
+    <TextView
+        android:id="@+id/tv_average_lifespan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_average_lifespan_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_average_lifespan_label"
+        android:layout_toRightOf="@id/tv_average_lifespan_label" />
+
+    <TextView
+        android:id="@+id/tv_eye_colours_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_average_lifespan_label"
+        android:text="@string/eye_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_eye_colours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_eye_colours_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_eye_colours_label"
+        android:layout_toRightOf="@id/tv_eye_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_hair_colours_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_eye_colours_label"
+        android:text="@string/hair_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_hair_colours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_hair_colours_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_hair_colours_label"
+        android:layout_toRightOf="@id/tv_hair_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_skin_colours_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_hair_colours_label"
+        android:text="@string/skin_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_skin_colours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_skin_colours_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_skin_colours_label"
+        android:layout_toRightOf="@id/tv_skin_colours_label" />
+
+    <TextView
+        android:id="@+id/tv_language_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_skin_colours_label"
+        android:text="@string/language_label" />
+
+    <TextView
+        android:id="@+id/tv_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_language_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_language_label"
+        android:layout_toRightOf="@id/tv_language_label" />
+
+    <TextView
+        android:id="@+id/tv_homeworld_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_language_label"
+        android:text="@string/homeworld_label" />
+
+    <TextView
+        android:id="@+id/tv_homeworld"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_homeworld_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_homeworld_label"
+        android:layout_toRightOf="@id/tv_homeworld_label" />
+
+    <TextView
+        android:id="@+id/tv_people_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_homeworld_label"
+        android:layout_alignStart="@id/tv_homeworld_label"
+        android:layout_below="@id/tv_homeworld_label"
+        android:text="@string/people_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_people_label"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/tv_films_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_people_label"
+        android:layout_alignStart="@id/tv_people_label"
+        android:layout_below="@id/ll_people"
+        android:text="@string/films_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_films"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_people"
+        android:layout_alignStart="@id/ll_people"
+        android:layout_below="@id/tv_films_label"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical" />
+
 </RelativeLayout>
