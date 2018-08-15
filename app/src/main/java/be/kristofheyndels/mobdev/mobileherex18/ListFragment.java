@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import Helpers.JsonCallBack;
 import Helpers.MyArrayAdapter;
 import Helpers.SWAPI;
-import Model.Categories;
+import Helpers.Categories;
 import Model.Film;
 import Model.FilmResults;
 import Model.Person;
@@ -37,6 +39,7 @@ import Model.Species;
 import Model.SpeciesResults;
 import Model.Starship;
 import Model.StarshipResults;
+import Model.SwapiObject;
 import Model.Vehicle;
 import Model.VehicleResults;
 
@@ -46,9 +49,10 @@ public class ListFragment extends Fragment {
 
     private Spinner dropCategory;
     private ListView lvResults;
+    private HashMap<String, SwapiObject> resultMap;
     private List<String> resultList;
 
-    private OnFragmentInteractionListener mListener;
+    private OnUserSelectionMade mListener;
 
     private int selectedCategory = 0;
 
@@ -86,6 +90,13 @@ public class ListFragment extends Fragment {
         });
 
         lvResults = view.findViewById(R.id.lv_results);
+        lvResults.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = (String) lvResults.getItemAtPosition(i);
+                mListener.onUserSelectedMade(resultMap.get(selectedItem));
+            }
+        });
 
         if (savedInstanceState == null) {
             SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
@@ -117,8 +128,8 @@ public class ListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnUserSelectionMade) {
+            mListener = (OnUserSelectionMade) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -137,21 +148,6 @@ public class ListFragment extends Fragment {
 
         outState.putInt("selectedItem", dropCategory.getSelectedItemPosition());
         outState.putStringArrayList("list", ((MyArrayAdapter) lvResults.getAdapter()).getStringList());
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 
     private void populateSpinner() {
@@ -180,46 +176,63 @@ public class ListFragment extends Fragment {
 
     private List<String> buildResultList(String category, JSONObject json) {
         List<String> returnList = new ArrayList<>();
+        resultMap = new HashMap<>();
         Gson gson = new Gson();
 
         if (category.toLowerCase().equals("films")) {
+            Categories.selected = Categories.SelectedCategory.Films;
             FilmResults results = gson.fromJson(json.toString(), FilmResults.class);
 
             for (Film f : results.getResults()) {
                 returnList.add(f.getDisplayName());
+                resultMap.put(f.getDisplayName(), f);
             }
         } else if (category.toLowerCase().equals("people")) {
+            Categories.selected = Categories.SelectedCategory.People;
             PersonResults results = gson.fromJson(json.toString(), PersonResults.class);
 
             for (Person per : results.getResults()) {
                 returnList.add(per.getDisplayName());
+                resultMap.put(per.getDisplayName(), per);
             }
         } else if (category.toLowerCase().equals("planets")) {
+            Categories.selected = Categories.SelectedCategory.Planets;
             PlanetResults results = gson.fromJson(json.toString(), PlanetResults.class);
 
             for (Planet pla : results.getResults()) {
                 returnList.add(pla.getDisplayName());
+                resultMap.put(pla.getDisplayName(), pla);
             }
         } else if (category.toLowerCase().equals("species")) {
+            Categories.selected = Categories.SelectedCategory.Species;
             SpeciesResults results = gson.fromJson(json.toString(), SpeciesResults.class);
 
             for (Species sp : results.getResults()) {
                 returnList.add(sp.getDisplayName());
+                resultMap.put(sp.getDisplayName(), sp);
             }
         } else if (category.toLowerCase().equals("starships")) {
+            Categories.selected = Categories.SelectedCategory.Starships;
             StarshipResults results = gson.fromJson(json.toString(), StarshipResults.class);
 
             for (Starship sh : results.getResults()) {
                 returnList.add(sh.getDisplayName());
+                resultMap.put(sh.getDisplayName(), sh);
             }
         } else if (category.toLowerCase().equals("vehicles")) {
+            Categories.selected = Categories.SelectedCategory.Vehicles;
             VehicleResults results = gson.fromJson(json.toString(), VehicleResults.class);
 
             for (Vehicle v : results.getResults()) {
                 returnList.add(v.getDisplayName());
+                resultMap.put(v.getDisplayName(), v);
             }
         }
 
         return returnList;
+    }
+
+    public interface OnUserSelectionMade {
+        void onUserSelectedMade(SwapiObject swapiObject);
     }
 }

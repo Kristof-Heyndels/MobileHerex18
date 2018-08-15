@@ -6,11 +6,19 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
-import Helpers.ActiveFragment;
+import Factory.Details;
+import Factory.DetailsFactory;
+import Model.SwapiObject;
 
 
-public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener, DetailFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ListFragment.OnUserSelectionMade, DetailFragment.OnFragmentInteractionListener {
+
+    private enum ActiveFragment {
+        ListFragment,
+        DetailFragment
+    }
 
     public static final String URL = "https://swapi.co/api/";
     private static final String TAG = "MainActivity";
@@ -70,6 +78,13 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
         if (detailFragment.isAdded())
             getSupportFragmentManager().putFragment(outState, "detailFragment", detailFragment);
+    }
+
+    @Override
+    public void onUserSelectedMade(SwapiObject selectedItem) {
+        DetailsFactory factory = new DetailsFactory();
+        Details details = factory.buildDetails(selectedItem);
+        details.generateLayout(detailFragment);
     }
 
     @Override

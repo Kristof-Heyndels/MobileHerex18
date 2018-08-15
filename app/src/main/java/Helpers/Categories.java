@@ -1,4 +1,4 @@
-package Model;
+package Helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Categories {
+    public enum SelectedCategory {
+        None,
+        Films,
+        People,
+        Planets,
+        Species,
+        Starships,
+        Vehicles
+    }
+
+    public static SelectedCategory selected = SelectedCategory.None;
+
     private static Map<String, String> categoryMap = new HashMap<>();
 
     public static void addEntry(String key, String value) {

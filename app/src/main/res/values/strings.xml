@@ -6,4 +6,42 @@
     <string name="hello_detail_fragment">Hello detail fragment</string>
     <string name="hello_main_activity">Hello Main Activity</string>
     <string name="star_wars_api">STARWARS DB</string>
+    <string name="display_label">Display Name</string>
+
+    <!-- fragment_details_films -->
+    <string name="title_label">Title: </string>
+    <string name="episode_id_label">Episode ID: </string>
+    <string name="director_label">Director(s):</string>
+    <string name="producer_label">Producer(s):</string>
+    <string name="poster_discription">poster_discription</string>
+    <string name="release_date_label">Release Date:</string>
+    <string name="species_label">Species:</string>
+    <string name="starships_label">Starships:</string>
+    <string name="vehicles_label">Vehicles:</string>
+    <string name="planets_label">Planets:</string>
+    <string name="characters_label">Characters:</string>
+
+    <!-- fragment_details_people -->
+    <string name="name_label">Name: </string>
+    <string name="birth_date_label">Date of Birth:</string>
+    <string name="eye_colour_label">Eye Colour:</string>
+    <string name="height_label">Height:</string>
+    <string name="mass_label">Mass:</string>
+    <string name="skin_colour_label">Skin Colour:</string>
+    <string name="homeworld_label">Homeworld:</string>
+    <string name="films_label">Films:</string>
+    <string name="gender_label">Gender:</string>
+    <string name="hair_colour_label">Hair Colour:</string>
+
+    <!-- fragment_details_planets -->
+    <string name="diamter_label">Diamter:</string>
+    <string name="rotation_period_label">Rotation Period:</string>
+    <string name="orbital_period_label">Orbital Period</string>
+    <string name="gravity_label">Gravity:</string>
+    <string name="population_label">Population:</string>
+    <string name="surface_water_label">Surface Water:</string>
+    <string name="terrain_label">Terrain:</string>
+    <string name="climate_label">Climate:</string>
+    <string name="residents_label">Residents:</string>
+
 </resources>

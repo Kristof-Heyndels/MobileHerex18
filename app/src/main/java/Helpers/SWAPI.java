@@ -13,6 +13,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import Model.SwapiObject;
 import be.kristofheyndels.mobdev.mobileherex18.MainActivity;
 
 public class SWAPI {

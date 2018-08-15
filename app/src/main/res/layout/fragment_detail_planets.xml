@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/inflated_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_label" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_name_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_name_label"
+        android:layout_toRightOf="@id/tv_name_label" />
+
+    <TextView
+        android:id="@+id/tv_diameter_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name_label"
+        android:text="@string/diamter_label" />
+
+    <TextView
+        android:id="@+id/tv_diameter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_diameter_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_diameter_label"
+        android:layout_toRightOf="@id/tv_diameter_label" />
+
+    <TextView
+        android:id="@+id/tv_rotation_period_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_diameter_label"
+        android:text="@string/rotation_period_label" />
+
+    <TextView
+        android:id="@+id/tv_rotation_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_rotation_period_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_rotation_period_label"
+        android:layout_toRightOf="@id/tv_rotation_period_label" />
+
+    <TextView
+        android:id="@+id/tv_orbital_period_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_rotation_period_label"
+        android:text="@string/orbital_period_label" />
+
+    <TextView
+        android:id="@+id/tv_orbital_period"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_orbital_period_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_orbital_period_label"
+        android:layout_toRightOf="@id/tv_orbital_period_label" />
+
+    <TextView
+        android:id="@+id/tv_gravity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_orbital_period_label"
+        android:text="@string/gravity_label" />
+
+    <TextView
+        android:id="@+id/tv_gravity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_gravity_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_gravity_label"
+        android:layout_toRightOf="@id/tv_gravity_label" />
+
+    <TextView
+        android:id="@+id/tv_population_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_gravity_label"
+        android:text="@string/population_label" />
+
+    <TextView
+        android:id="@+id/tv_population"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_population_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_population_label"
+        android:layout_toRightOf="@id/tv_population_label" />
+
+    <TextView
+        android:id="@+id/tv_climate_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_population_label"
+        android:text="@string/climate_label" />
+
+    <TextView
+        android:id="@+id/tv_climate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_climate_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_climate_label"
+        android:layout_toRightOf="@id/tv_climate_label" />
+
+    <TextView
+        android:id="@+id/tv_terrain_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_climate_label"
+        android:text="@string/terrain_label" />
+
+    <TextView
+        android:id="@+id/tv_terrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_terrain_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_terrain_label"
+        android:layout_toRightOf="@id/tv_terrain_label" />
+
+    <TextView
+        android:id="@+id/tv_surface_water_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_terrain_label"
+        android:text="@string/surface_water_label" />
+
+    <TextView
+        android:id="@+id/tv_surface_water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_surface_water_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_surface_water_label"
+        android:layout_toRightOf="@id/tv_surface_water_label" />
+
+    <TextView
+        android:id="@+id/tv_residents_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_surface_water_label"
+        android:layout_alignStart="@id/tv_surface_water_label"
+        android:layout_below="@id/tv_surface_water_label"
+        android:text="@string/residents_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_residents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_residents_label"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/tv_films_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_residents_label"
+        android:layout_alignStart="@id/tv_residents_label"
+        android:layout_below="@id/ll_residents"
+        android:text="@string/films_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_films"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_residents"
+        android:layout_alignStart="@id/ll_residents"
+        android:layout_below="@id/tv_films_label"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical" />
+
+</RelativeLayout>
