@@ -4,4 +4,227 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_label" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_name_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_name_label"
+        android:layout_toRightOf="@id/tv_name_label" />
+
+    <TextView
+        android:id="@+id/tv_model_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_name_label"
+        android:text="@string/model_label" />
+
+    <TextView
+        android:id="@+id/tv_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_model_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_model_label"
+        android:layout_toRightOf="@id/tv_model_label" />
+
+    <TextView
+        android:id="@+id/tv_vehicle_class_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_model_label"
+        android:text="@string/vehicle_class_label" />
+
+    <TextView
+        android:id="@+id/tv_vehicle_class"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_vehicle_class_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_vehicle_class_label"
+        android:layout_toRightOf="@id/tv_vehicle_class_label" />
+
+    <TextView
+        android:id="@+id/tv_manufacturer_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_vehicle_class_label"
+        android:text="@string/manufacturer_label" />
+
+    <TextView
+        android:id="@+id/tv_manufacturer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_manufacturer_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_manufacturer_label"
+        android:layout_toRightOf="@id/tv_manufacturer_label" />
+
+    <TextView
+        android:id="@+id/tv_cost_in_credits_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_manufacturer_label"
+        android:text="@string/cost_in_credits_label" />
+
+    <TextView
+        android:id="@+id/tv_cost_in_credits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_cost_in_credits_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_cost_in_credits_label"
+        android:layout_toRightOf="@id/tv_cost_in_credits_label" />
+
+    <TextView
+        android:id="@+id/tv_length_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cost_in_credits_label"
+        android:text="@string/length_label" />
+
+    <TextView
+        android:id="@+id/tv_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_length_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_length_label"
+        android:layout_toRightOf="@id/tv_length_label" />
+
+    <TextView
+        android:id="@+id/tv_crew_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_length_label"
+        android:text="@string/crew_label" />
+
+    <TextView
+        android:id="@+id/tv_crew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_crew_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_crew_label"
+        android:layout_toRightOf="@id/tv_crew_label" />
+
+    <TextView
+        android:id="@+id/tv_passengers_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_crew_label"
+        android:text="@string/passengers_label" />
+
+    <TextView
+        android:id="@+id/tv_passengers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_passengers_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_passengers_label"
+        android:layout_toRightOf="@id/tv_passengers_label" />
+
+    <TextView
+        android:id="@+id/tv_max_atmosphering_speed_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_passengers_label"
+        android:text="@string/max_atmospheric_speed_label" />
+
+    <TextView
+        android:id="@+id/tv_max_atmosphering_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_max_atmosphering_speed_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_max_atmosphering_speed_label"
+        android:layout_toRightOf="@id/tv_max_atmosphering_speed_label" />
+
+    <TextView
+        android:id="@+id/tv_cargo_capacity_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_max_atmosphering_speed_label"
+        android:text="@string/cargo_capacity_label" />
+
+    <TextView
+        android:id="@+id/tv_cargo_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_cargo_capacity_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_cargo_capacity_label"
+        android:layout_toRightOf="@id/tv_cargo_capacity_label" />
+
+    <TextView
+        android:id="@+id/tv_consumables_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cargo_capacity_label"
+        android:text="@string/consumables_label" />
+
+    <TextView
+        android:id="@+id/tv_consumables"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_consumables_label"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/tv_consumables_label"
+        android:layout_toRightOf="@id/tv_consumables_label" />
+
+    <TextView
+        android:id="@+id/tv_films_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_consumables_label"
+        android:layout_alignStart="@id/tv_consumables_label"
+        android:layout_below="@id/tv_consumables_label"
+        android:text="@string/films_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_films"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_films_label"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical" />
+
+    <TextView
+        android:id="@+id/tv_pilots_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_films_label"
+        android:layout_alignStart="@id/tv_films_label"
+        android:layout_below="@id/ll_films"
+        android:text="@string/pilots_label" />
+
+    <LinearLayout
+        android:id="@+id/ll_pilots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_films"
+        android:layout_alignStart="@id/ll_films"
+        android:layout_below="@id/tv_pilots_label"
+        android:layout_marginBottom="50dp"
+        android:orientation="vertical" />
+
 </RelativeLayout>

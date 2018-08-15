@@ -13,6 +13,7 @@ public class Vehicle extends SwapiObject {
     private String passengers;
     private String max_atmosphering_speed;
     private String cargo_capacity;
+    private String consumable;
     private ArrayList<String> films;
     private ArrayList<String> pilots;
 
@@ -113,7 +114,15 @@ public class Vehicle extends SwapiObject {
     }
 
     @Override
-    public String getDisplayName(){
+    public String getDisplayName() {
         return name;
+    }
+
+    public String getConsumable() {
+        return consumable;
+    }
+
+    public void setConsumable(String consumable) {
+        this.consumable = consumable;
     }
 }
