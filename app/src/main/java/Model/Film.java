@@ -3,7 +3,9 @@ package Model;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Film extends SwapiObject{
+import Helpers.RomanNumerals;
+
+public class Film extends SwapiObject {
 
     private String title;
     private int episode_id;
@@ -62,7 +64,7 @@ public class Film extends SwapiObject{
     }
 
     @Override
-    public String getDisplayName(){
-        return title;
+    public String getDisplayName() {
+        return String.format("Episode %s: %s", RomanNumerals.toRomanNumeral(episode_id), title);
     }
 }

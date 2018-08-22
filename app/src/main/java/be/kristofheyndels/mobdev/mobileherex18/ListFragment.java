@@ -162,6 +162,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onSuccess(JSONObject result) {
                resultList = buildResultList(selectedCategory, result);
+                java.util.Collections.sort(resultList);
                 populateList();
             }
         });
