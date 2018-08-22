@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_title_label"
         android:text="@string/episode_id_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_episode_id"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_episode_id_label"
         android:text="@string/director_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_director"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_director_label"
         android:text="@string/producer_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_producer"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_producer"
         android:text="@string/release_date_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_release_date"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_release_date_label"
         android:text="@string/species_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_species"
@@ -119,7 +119,7 @@
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_species"
         android:text="@string/starships_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_starships"
@@ -138,7 +138,7 @@
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_starships"
         android:text="@string/vehicles_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_vehicles"
@@ -157,7 +157,7 @@
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_vehicles"
         android:text="@string/characters_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_characters"
@@ -176,7 +176,7 @@
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_characters"
         android:text="@string/planets_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_planets"
@@ -193,7 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_planets"
         android:text="@string/opening_crawl_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_opening_crawl"

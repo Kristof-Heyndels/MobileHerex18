@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name_label"
         android:text="@string/diamter_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_diameter"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_diameter_label"
         android:text="@string/rotation_period_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_rotation_period"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_rotation_period_label"
         android:text="@string/orbital_period_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_orbital_period"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_orbital_period_label"
         android:text="@string/gravity_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_gravity"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_gravity_label"
         android:text="@string/population_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_population"
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_population_label"
         android:text="@string/climate_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_climate"
@@ -136,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_climate_label"
         android:text="@string/terrain_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_terrain"
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_terrain_label"
         android:text="@string/surface_water_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_surface_water"
@@ -174,7 +174,7 @@
         android:layout_alignStart="@id/tv_surface_water_label"
         android:layout_below="@id/tv_surface_water_label"
         android:text="@string/residents_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_residents"
@@ -193,7 +193,7 @@
         android:layout_alignStart="@id/tv_residents_label"
         android:layout_below="@id/ll_residents"
         android:text="@string/films_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_films"

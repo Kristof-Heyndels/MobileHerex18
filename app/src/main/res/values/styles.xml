@@ -11,6 +11,7 @@
         <item name="android:textColor">@color/gold</item>
         <item name="android:textColorSecondary">@color/white</item>
         <item name="android:actionMenuTextColor">@color/gold</item>
+        <item name="android:layout_marginTop">5dp</item>
     </style>
 
     <style name="AppTheme.ActionBar" parent="AppTheme">

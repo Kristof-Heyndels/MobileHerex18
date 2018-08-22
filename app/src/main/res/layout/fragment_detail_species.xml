@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name_label"
         android:text="@string/classification_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_classification"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_classification_label"
         android:text="@string/designation_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_designation"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_designation_label"
         android:text="@string/average_height_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_average_height"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_average_height_label"
         android:text="@string/average_lifespan_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_average_lifespan"
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_average_lifespan_label"
         android:text="@string/eye_colours_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_eye_colours"
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eye_colours_label"
         android:text="@string/hair_colours_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_hair_colours"
@@ -136,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_hair_colours_label"
         android:text="@string/skin_colours_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_skin_colours"
@@ -154,7 +154,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_skin_colours_label"
         android:text="@string/language_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_language"
@@ -172,7 +172,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_language_label"
         android:text="@string/homeworld_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <TextView
         android:id="@+id/tv_homeworld"
@@ -192,7 +192,7 @@
         android:layout_alignStart="@id/tv_homeworld_label"
         android:layout_below="@id/tv_homeworld_label"
         android:text="@string/people_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_people"
@@ -211,7 +211,7 @@
         android:layout_alignStart="@id/tv_people_label"
         android:layout_below="@id/ll_people"
         android:text="@string/films_label"
-        app:fontFamily="@font/starjedi_family" />
+        app:fontFamily="@font/sf_distant_galaxy_family" />
 
     <LinearLayout
         android:id="@+id/ll_films"
