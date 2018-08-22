@@ -3,15 +3,26 @@ package be.kristofheyndels.mobdev.mobileherex18;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+import Factory.Details;
+import Factory.DetailsFactory;
+import Model.SwapiObject;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 public class DetailFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private SwapiObject selectedItem;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -22,6 +33,15 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (selectedItem != null) {
+            fillDetails();
+        }
     }
 
     @Override
@@ -54,5 +74,18 @@ public class DetailFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void setSelectedItem(SwapiObject selectedItem) {
+        this.selectedItem = selectedItem;
+        if (this.getView() != null) {
+            fillDetails();
+        }
+    }
+
+    private void fillDetails(){
+        DetailsFactory factory = new DetailsFactory();
+        Details details = factory.buildDetails(selectedItem);
+        details.generateLayout(this);
     }
 }
