@@ -82,7 +82,13 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     }
 
     @Override
-    public void onUserSelectedMade(SwapiObject selectedItem) {
+    public void onUserCategorySelectionMade() {
+        selectedItem = null;
+        activeFragment = ActiveFragment.ListFragment;
+    }
+
+    @Override
+    public void onUserListItemSelectionMade(SwapiObject selectedItem) {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             FragmentTransaction trans = getSupportFragmentManager().beginTransaction();
 

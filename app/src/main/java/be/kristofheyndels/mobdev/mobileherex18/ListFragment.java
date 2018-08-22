@@ -1,12 +1,10 @@
 package be.kristofheyndels.mobdev.mobileherex18;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +79,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 buildListAdapter((String)dropCategory.getSelectedItem());
+                mListener.onUserCategorySelectionMade();
             }
 
             @Override
@@ -94,7 +93,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = (String) lvResults.getItemAtPosition(i);
-                mListener.onUserSelectedMade(resultMap.get(selectedItem));
+                mListener.onUserListItemSelectionMade(resultMap.get(selectedItem));
             }
         });
 
@@ -233,6 +232,7 @@ public class ListFragment extends Fragment {
     }
 
     public interface OnUserSelectionMade {
-        void onUserSelectedMade(SwapiObject swapiObject);
+        void onUserListItemSelectionMade(SwapiObject swapiObject);
+        void onUserCategorySelectionMade();
     }
 }
