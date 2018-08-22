@@ -174,7 +174,22 @@
         android:layout_alignLeft="@id/ll_species"
         android:layout_alignStart="@id/ll_species"
         android:layout_below="@id/tv_planets_label"
-        android:layout_marginBottom="50dp"
         android:orientation="vertical"/>
+
+    <TextView
+        android:id="@+id/tv_opening_crawl_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_planets"
+        android:text="@string/opening_crawl_label"/>
+
+    <TextView
+        android:id="@+id/tv_opening_crawl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ll_species"
+        android:layout_alignStart="@id/ll_species"
+        android:layout_below="@id/tv_opening_crawl_label"
+        android:layout_marginBottom="50dp"/>
 
 </RelativeLayout>

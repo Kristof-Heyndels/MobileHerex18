@@ -50,5 +50,7 @@ public class FilmDetails extends AbstractDetails {
 
         LinearLayout planetListLayout = layout.findViewById(R.id.ll_planets);
         createListFromUrlArray(detailFragment.getContext(), film.getPlanets(), planetListLayout, Planet.class);
+
+        ((TextView) layout.findViewById(R.id.tv_opening_crawl)).setText(film.getOpening_crawl());
     }
 }

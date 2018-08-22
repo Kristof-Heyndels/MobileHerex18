@@ -20,6 +20,7 @@
     <string name="vehicles_label">Vehicles:</string>
     <string name="planets_label">Planets:</string>
     <string name="characters_label">Characters:</string>
+    <string name="opening_crawl_label">Opening Crawl</string>
 
     <!-- fragment_details_people -->
     <string name="name_label">Name: </string>
