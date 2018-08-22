@@ -21,7 +21,7 @@ public class VehicleDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
-        mLayoutInflater.inflate(R.layout.fragment_detail_vehicles, (ViewGroup) layout.findViewById(R.id.details_relative_layout));
+        mLayoutInflater.inflate(R.layout.fragment_detail_vehicles, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(vehicle.getName());
         ((TextView) layout.findViewById(R.id.tv_model)).setText(vehicle.getModel());

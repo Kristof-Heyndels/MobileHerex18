@@ -31,11 +31,12 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class AbstractDetails implements Details {
     protected ScrollView layout;
+
     protected LayoutInflater mLayoutInflater;
 
     @Override
     public void generateLayout(DetailFragment detailFragment) {
-        layout = detailFragment.getView().findViewById(R.id.details_relative_layout);
+        layout = detailFragment.getView().findViewById(R.id.details_scroll_view);
         layout.removeView(layout.findViewById(R.id.inflated_details));
 
         mLayoutInflater = (LayoutInflater) detailFragment.getContext().getSystemService(LAYOUT_INFLATER_SERVICE);

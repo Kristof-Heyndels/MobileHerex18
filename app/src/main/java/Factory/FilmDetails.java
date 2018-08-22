@@ -26,7 +26,7 @@ public class FilmDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
-        mLayoutInflater.inflate(R.layout.fragment_detail_films, (ViewGroup) layout.findViewById(R.id.details_relative_layout));
+        mLayoutInflater.inflate(R.layout.fragment_detail_films, layout);
 
         ((TextView) layout.findViewById(R.id.tv_title)).setText(film.getTitle());
         ((TextView) layout.findViewById(R.id.tv_episode_id)).setText(Integer.toString(film.getEpisode_id()));

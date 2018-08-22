@@ -28,7 +28,7 @@ public class SpeciesDetails extends AbstractDetails  {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
-        mLayoutInflater.inflate(R.layout.fragment_detail_species, (ViewGroup) layout.findViewById(R.id.details_relative_layout));
+        mLayoutInflater.inflate(R.layout.fragment_detail_species, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(species.getName());
         ((TextView) layout.findViewById(R.id.tv_classification)).setText(species.getClassification());

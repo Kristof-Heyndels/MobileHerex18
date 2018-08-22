@@ -30,7 +30,7 @@ public class PeopleDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
-        mLayoutInflater.inflate(R.layout.fragment_detail_people, (ViewGroup) layout.findViewById(R.id.details_relative_layout));
+        mLayoutInflater.inflate(R.layout.fragment_detail_people, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(person.getName());
         ((TextView) layout.findViewById(R.id.tv_birth_date)).setText(person.getBirth_year());

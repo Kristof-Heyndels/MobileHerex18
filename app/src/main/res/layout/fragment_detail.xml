@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailFragment"
-    android:id="@+id/details_relative_layout">
+    android:id="@+id/details_scroll_view">
 
 </ScrollView>
