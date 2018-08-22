@@ -50,6 +50,10 @@ public class SWAPI {
                 JSONObject jsonResponse = new JSONObject(responseString);
                 jsonCallBack.onSuccess(jsonResponse);
 
+                cachedFile.close();
+                reader.close();
+                bReader.close();
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
