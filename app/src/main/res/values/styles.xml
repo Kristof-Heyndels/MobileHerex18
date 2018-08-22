@@ -9,6 +9,7 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/gold</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <item name="android:actionMenuTextColor">@color/gold</item>
     </style>
 

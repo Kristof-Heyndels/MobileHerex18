@@ -47,8 +47,6 @@ public class SWAPI {
                 }
 
                 responseString = stringBuffer.toString();
-                Log.wtf(TAG, responseString);
-
                 JSONObject jsonResponse = new JSONObject(responseString);
                 jsonCallBack.onSuccess(jsonResponse);
 
