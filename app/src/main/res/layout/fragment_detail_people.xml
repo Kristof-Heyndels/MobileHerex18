@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/inflated_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,7 +9,8 @@
         android:id="@+id/tv_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_label" />
+        android:text="@string/name_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -25,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name_label"
-        android:text="@string/birth_date_label" />
+        android:text="@string/birth_date_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_birth_date"
@@ -42,7 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_birth_date_label"
-        android:text="@string/eye_colour_label" />
+        android:text="@string/eye_colour_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_eye_colour"
@@ -59,7 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_eye_colour_label"
-        android:text="@string/gender_label" />
+        android:text="@string/gender_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_gender"
@@ -76,7 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_gender_label"
-        android:text="@string/hair_colour_label" />
+        android:text="@string/hair_colour_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_hair_colour"
@@ -93,7 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_hair_colour_label"
-        android:text="@string/height_label" />
+        android:text="@string/height_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_height"
@@ -110,7 +117,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_height_label"
-        android:text="@string/mass_label" />
+        android:text="@string/mass_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_mass"
@@ -127,7 +135,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_mass_label"
-        android:text="@string/skin_colour_label" />
+        android:text="@string/skin_colour_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_skin_colour"
@@ -144,7 +153,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/skin_colour_label"
-        android:text="@string/homeworld_label" />
+        android:text="@string/homeworld_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_homeworld"
@@ -161,7 +171,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_homeworld"
-        android:text="@string/films_label" />
+        android:text="@string/films_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_films"
@@ -177,7 +188,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_films"
-        android:text="@string/species_label" />
+        android:text="@string/species_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_species"
@@ -195,7 +207,8 @@
         android:layout_alignLeft="@id/tv_species_label"
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_species"
-        android:text="@string/starships_label" />
+        android:text="@string/starships_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_starships"
@@ -213,7 +226,8 @@
         android:layout_alignLeft="@id/tv_species_label"
         android:layout_alignStart="@id/tv_species_label"
         android:layout_below="@id/ll_starships"
-        android:text="@string/vehicles_label" />
+        android:text="@string/vehicles_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_vehicles"

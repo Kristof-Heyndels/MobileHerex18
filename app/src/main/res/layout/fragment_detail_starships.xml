@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/inflated_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,7 +9,8 @@
         android:id="@+id/tv_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name_label" />
+        android:text="@string/name_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -25,7 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_name_label"
-        android:text="@string/model_label" />
+        android:text="@string/model_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_model"
@@ -42,7 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_model_label"
-        android:text="@string/starship_class_label" />
+        android:text="@string/starship_class_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_starship_class"
@@ -59,7 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_starship_class_label"
-        android:text="@string/manufacturer_label" />
+        android:text="@string/manufacturer_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_manufacturer"
@@ -76,7 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_manufacturer_label"
-        android:text="@string/cost_in_credits_label" />
+        android:text="@string/cost_in_credits_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_cost_in_credits"
@@ -93,7 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_cost_in_credits_label"
-        android:text="@string/length_label" />
+        android:text="@string/length_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_length"
@@ -110,7 +117,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_length_label"
-        android:text="@string/crew_label" />
+        android:text="@string/crew_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_crew"
@@ -127,7 +135,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_crew_label"
-        android:text="@string/passengers_label" />
+        android:text="@string/passengers_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_passengers"
@@ -144,7 +153,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_passengers_label"
-        android:text="@string/max_atmospheric_speed_label" />
+        android:text="@string/max_atmospheric_speed_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_max_atmosphering_speed"
@@ -161,7 +171,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_max_atmosphering_speed_label"
-        android:text="@string/hyperdrive_rating_label" />
+        android:text="@string/hyperdrive_rating_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_hyperdrive_rating"
@@ -178,7 +189,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_hyperdrive_rating_label"
-        android:text="@string/mglt_label" />
+        android:text="@string/mglt_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_mglt"
@@ -195,7 +207,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_mglt_label"
-        android:text="@string/cargo_capacity_label" />
+        android:text="@string/cargo_capacity_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_cargo_capacity"
@@ -212,7 +225,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_cargo_capacity_label"
-        android:text="@string/consumables_label" />
+        android:text="@string/consumables_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <TextView
         android:id="@+id/tv_consumables"
@@ -231,7 +245,8 @@
         android:layout_alignLeft="@id/tv_consumables_label"
         android:layout_alignStart="@id/tv_consumables_label"
         android:layout_below="@id/tv_consumables_label"
-        android:text="@string/films_label" />
+        android:text="@string/films_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_films"
@@ -249,7 +264,8 @@
         android:layout_alignLeft="@id/tv_films_label"
         android:layout_alignStart="@id/tv_films_label"
         android:layout_below="@id/ll_films"
-        android:text="@string/pilots_label" />
+        android:text="@string/pilots_label"
+        app:fontFamily="@font/starjedi_family" />
 
     <LinearLayout
         android:id="@+id/ll_pilots"

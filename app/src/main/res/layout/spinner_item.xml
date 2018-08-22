@@ -9,5 +9,5 @@
     android:textAlignment="inherit"
     app:autoSizePresetSizes="@array/autosize_text_sizes"
     app:autoSizeTextType="uniform"
-    app:fontStyle="italic"
-    app:fontFamily="@font/starjout" />
+    app:fontFamily="@font/starjout"
+    app:fontStyle="italic" />
