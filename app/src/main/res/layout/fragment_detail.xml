@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment"
-    android:id="@+id/details_scroll_view">
+    android:orientation="vertical">
 
-</ScrollView>
+    <Button
+        android:id="@+id/btn_bookmark"
+        android:layout_width="60dp"
+        android:layout_height="65dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@mipmap/bookmark_unselected_round"
+        android:visibility="invisible"/>
+
+
+    <ScrollView
+        android:id="@+id/details_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        tools:context=".DetailFragment" />
+
+</RelativeLayout>
