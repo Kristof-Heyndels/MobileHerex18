@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import Model.SwapiObject;
+import be.kristofheyndels.mobdev.model.SwapiObject;
 
 public class SwapiTab extends Fragment{
 

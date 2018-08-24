@@ -2,12 +2,10 @@ package be.kristofheyndels.mobdev.mobileherex18;
 
 import android.app.ActivityManager;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,8 +17,8 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.Objects;
 
-import Helpers.MyPagerAdapter;
-import Model.SwapiObject;
+import be.kristofheyndels.mobdev.helpers.MyPagerAdapter;
+import be.kristofheyndels.mobdev.model.SwapiObject;
 
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnUserSelectionMade, DetailFragment.OnFragmentInteractionListener {

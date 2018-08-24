@@ -23,23 +23,23 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import Helpers.JsonCallBack;
-import Helpers.MyArrayAdapter;
-import Helpers.SWAPI;
-import Helpers.Categories;
-import Model.Film;
-import Model.FilmResults;
-import Model.Person;
-import Model.PersonResults;
-import Model.Planet;
-import Model.PlanetResults;
-import Model.Species;
-import Model.SpeciesResults;
-import Model.Starship;
-import Model.StarshipResults;
-import Model.SwapiObject;
-import Model.Vehicle;
-import Model.VehicleResults;
+import be.kristofheyndels.mobdev.model.JsonCallBack;
+import be.kristofheyndels.mobdev.helpers.MyArrayAdapter;
+import be.kristofheyndels.mobdev.model.SWAPI;
+import be.kristofheyndels.mobdev.helpers.Categories;
+import be.kristofheyndels.mobdev.model.Film;
+import be.kristofheyndels.mobdev.model.FilmResults;
+import be.kristofheyndels.mobdev.model.Person;
+import be.kristofheyndels.mobdev.model.PersonResults;
+import be.kristofheyndels.mobdev.model.Planet;
+import be.kristofheyndels.mobdev.model.PlanetResults;
+import be.kristofheyndels.mobdev.model.Species;
+import be.kristofheyndels.mobdev.model.SpeciesResults;
+import be.kristofheyndels.mobdev.model.Starship;
+import be.kristofheyndels.mobdev.model.StarshipResults;
+import be.kristofheyndels.mobdev.model.SwapiObject;
+import be.kristofheyndels.mobdev.model.Vehicle;
+import be.kristofheyndels.mobdev.model.VehicleResults;
 
 public class ListFragment extends Fragment {
 

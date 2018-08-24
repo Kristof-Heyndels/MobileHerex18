@@ -9,14 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
-import Factory.Details;
-import Factory.DetailsFactory;
-import Model.SwapiObject;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import be.kristofheyndels.mobdev.factory.Details;
+import be.kristofheyndels.mobdev.factory.DetailsFactory;
+import be.kristofheyndels.mobdev.model.SwapiObject;
 
 
 public class DetailFragment extends Fragment {
