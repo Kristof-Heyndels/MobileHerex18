@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.arch.persistence.room.TypeConverter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +17,14 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
+import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
+import be.kristofheyndels.mobdev.mobileherex18.R;
 import be.kristofheyndels.mobdev.model.JsonCallBack;
 import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.SwapiObject;
-import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
-import be.kristofheyndels.mobdev.mobileherex18.R;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -70,21 +72,20 @@ public abstract class AbstractDetails implements Details {
         }
     }
 
-    private void buildTextViews(Context c, LinearLayout parent, List<String> stringList) {
-
-        for (String item : stringList) {
-            TextView tv = new TextView(c);
-            tv.setText(item);
-            parent.addView(tv);
-        }
-    }
-
-    private void onBookmarkClick(View btn) {
+    protected void onBookmarkClick(View btn) {
         isBookmarked = !isBookmarked;
         if (isBookmarked) {
             btn.setBackgroundResource(R.mipmap.bookmark_selected);
         } else {
             btn.setBackgroundResource(R.mipmap.bookmark_unselected);
+        }
+    }
+
+    private void buildTextViews(Context c, LinearLayout parent, List<String> stringList) {
+        for (String item : stringList) {
+            TextView tv = new TextView(c);
+            tv.setText(item);
+            parent.addView(tv);
         }
     }
 }

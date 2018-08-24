@@ -30,7 +30,7 @@ public class SWAPI {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(mContext);
 
-        if (checkCachedFileExists(mContext, url)) {
+        if (checkCachedFile(mContext, url)) {
             try {
                 String responseString = "";
                 String fileName = url.replace('/', '-');
@@ -41,7 +41,7 @@ public class SWAPI {
                 StringBuffer stringBuffer = new StringBuffer();
 
                 String readString = bReader.readLine();
-                while ( readString != null ) {
+                while (readString != null) {
                     stringBuffer.append(readString);
                     readString = bReader.readLine();
                 }
@@ -109,11 +109,20 @@ public class SWAPI {
         }
     }
 
-    private static boolean checkCachedFileExists(Context mContext, String url) {
+    private static boolean checkCachedFile(Context mContext, String url) {
+        final long DAYINMS = 86400000;
         url = url.replace('/', '-');
 
         for (String f : mContext.fileList()) {
             if (f.equals(url)) {
+                File file = new File(url);
+                long lastModDate = file.lastModified();
+
+                // If current time has exceeded a day since file modification
+                if (lastModDate + DAYINMS < System.currentTimeMillis()) {
+                    file.delete();
+                    return false;
+                }
                 return true;
             }
         }

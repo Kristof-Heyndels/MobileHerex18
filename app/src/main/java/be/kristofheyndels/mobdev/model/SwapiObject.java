@@ -1,7 +1,12 @@
 package be.kristofheyndels.mobdev.model;
 
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 public abstract class SwapiObject {
 
+    @PrimaryKey
+    @NonNull
     private String url;
     private String created;
     private String edited;

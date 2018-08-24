@@ -1,10 +1,13 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
+import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.Planet;
@@ -51,5 +54,11 @@ public class FilmDetails extends AbstractDetails {
         createListFromUrlArray(detailFragment.getContext(), film.getPlanets(), planetListLayout, Planet.class);
 
         ((TextView) layout.findViewById(R.id.tv_opening_crawl)).setText(film.getOpening_crawl());
+    }
+
+    @Override
+    protected void onBookmarkClick(View btn) {
+        Log.wtf("Details", "Adding this film to database: " + film.getDisplayName());
+        DetailsRoomDatabase.getDatabase(btn.getContext()).filmsDao().insertFilm(film);
     }
 }
