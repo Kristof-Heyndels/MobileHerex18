@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class StarshipDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
+        super.checkIfBookmarked(starship);
         mLayoutInflater.inflate(R.layout.fragment_detail_starships, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(starship.getName());
@@ -41,5 +43,26 @@ public class StarshipDetails extends AbstractDetails {
 
         LinearLayout pilotListLayout = layout.findViewById(R.id.ll_pilots);
         createListFromUrlArray(detailFragment.getContext(), starship.getPilots(), pilotListLayout, Person.class);
+    }
+
+    @Override
+    protected void onBookmarkClick(View btn) {
+        super.onBookmarkClick(btn);
+
+        if (isBookmarked) {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.starshipDao().insert(starship);
+                }
+            });
+        } else {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.starshipDao().delete(starship);
+                }
+            });
+        }
     }
 }

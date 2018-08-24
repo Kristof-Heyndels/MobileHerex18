@@ -1,7 +1,13 @@
 package be.kristofheyndels.mobdev.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.TypeConverters;
+
 import java.util.ArrayList;
 
+import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
+
+@Entity(tableName = "people")
 public class Person extends SwapiObject{
     private String name;
     private String birth_year;
@@ -12,9 +18,17 @@ public class Person extends SwapiObject{
     private String mass;
     private String skin_color;
     private String homeworld;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> films;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> species;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> starships;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> vehicles;
 
     public String getName() {

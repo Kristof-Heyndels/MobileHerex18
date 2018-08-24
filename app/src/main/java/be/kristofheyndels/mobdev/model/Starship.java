@@ -1,7 +1,13 @@
 package be.kristofheyndels.mobdev.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.TypeConverters;
+
 import java.util.ArrayList;
 
+import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
+
+@Entity(tableName = "starships")
 public class Starship extends SwapiObject {
     private String name;
     private String model;
@@ -16,7 +22,11 @@ public class Starship extends SwapiObject {
     private String MGLT;
     private String cargo_capacity;
     private String consumables;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> films;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> pilots;
 
     public String getName() {

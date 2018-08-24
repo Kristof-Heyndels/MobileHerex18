@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.mobileherex18;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,7 +34,10 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     private static final String TAG = "MainActivity";
 
     public static Context appContext;
+    public static Activity appActivity;
+
     public static SwapiTab swapiTab;
+    public static BookmarkTab bookmarkTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
 
         setContentView(R.layout.activity_main);
         appContext = getApplicationContext();
+        appActivity = this;
 
         // Setting up ActionBar
         {

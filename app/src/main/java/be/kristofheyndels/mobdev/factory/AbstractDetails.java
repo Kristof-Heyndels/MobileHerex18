@@ -109,10 +109,15 @@ public abstract class AbstractDetails implements Details {
     }
 
     private void updateBookmarkButton() {
-        if (isBookmarked) {
-            btnBookmark.setBackgroundResource(R.mipmap.bookmark_selected);
-        } else {
-            btnBookmark.setBackgroundResource(R.mipmap.bookmark_unselected);
-        }
+        MainActivity.appActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isBookmarked) {
+                    btnBookmark.setBackgroundResource(R.mipmap.bookmark_selected);
+                } else {
+                    btnBookmark.setBackgroundResource(R.mipmap.bookmark_unselected);
+                }
+            }
+        });
     }
 }

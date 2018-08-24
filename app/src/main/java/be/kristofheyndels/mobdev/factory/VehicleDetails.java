@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class VehicleDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
+        super.checkIfBookmarked(vehicle);
         mLayoutInflater.inflate(R.layout.fragment_detail_vehicles, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(vehicle.getName());
@@ -39,5 +41,26 @@ public class VehicleDetails extends AbstractDetails {
 
         LinearLayout pilotListLayout = layout.findViewById(R.id.ll_pilots);
         createListFromUrlArray(detailFragment.getContext(), vehicle.getPilots(), pilotListLayout, Person.class);
+    }
+
+    @Override
+    protected void onBookmarkClick(View btn) {
+        super.onBookmarkClick(btn);
+
+        if (isBookmarked) {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.vehicleDao().insert(vehicle);
+                }
+            });
+        } else {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.vehicleDao().delete(vehicle);
+                }
+            });
+        }
     }
 }

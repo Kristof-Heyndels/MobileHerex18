@@ -1,7 +1,13 @@
 package be.kristofheyndels.mobdev.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.TypeConverters;
+
 import java.util.ArrayList;
 
+import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
+
+@Entity(tableName = "planets")
 public class Planet extends SwapiObject{
     private String name;
     private String diameter;
@@ -12,7 +18,11 @@ public class Planet extends SwapiObject{
     private String climate;
     private String terrain;
     private String surface_water;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> residents;
+
+    @TypeConverters({DetailsRoomDatabase.class})
     private ArrayList<String> films;
 
     public String getName() {

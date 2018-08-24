@@ -1,9 +1,11 @@
 package be.kristofheyndels.mobdev.data;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 import com.google.gson.Gson;
@@ -14,13 +16,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import be.kristofheyndels.mobdev.model.Film;
+import be.kristofheyndels.mobdev.model.Person;
+import be.kristofheyndels.mobdev.model.Planet;
+import be.kristofheyndels.mobdev.model.Species;
+import be.kristofheyndels.mobdev.model.Starship;
+import be.kristofheyndels.mobdev.model.Vehicle;
 
-@Database(entities = {Film.class}, version = 2)
+@Database(entities = {Film.class, Person.class, Planet.class, Species.class, Starship.class, Vehicle.class}, version = 3)
 public abstract class DetailsRoomDatabase extends RoomDatabase {
     private static DetailsRoomDatabase INSTANCE;
 
-    public abstract FilmsDao filmsDao();
     public abstract SwapiDao swapiDao();
+
+    public abstract FilmsDao filmsDao();
+    public abstract PersonDao personDao();
+    public abstract PlanetDao planetDao();
+    public abstract SpeciesDao speciesDao();
+    public abstract StarshipDao starshipDao();
+    public abstract VehicleDao vehicleDao();
 
     public static DetailsRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -29,6 +42,7 @@ public abstract class DetailsRoomDatabase extends RoomDatabase {
                     // Create database here
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             DetailsRoomDatabase.class, "details_database")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }

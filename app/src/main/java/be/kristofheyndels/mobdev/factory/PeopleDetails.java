@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class PeopleDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
+        super.checkIfBookmarked(person);
         mLayoutInflater.inflate(R.layout.fragment_detail_people, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(person.getName());
@@ -61,5 +63,26 @@ public class PeopleDetails extends AbstractDetails {
 
         LinearLayout vehiclesList = layout.findViewById(R.id.ll_vehicles);
         createListFromUrlArray(detailFragment.getContext(), person.getVehicles(), vehiclesList, Vehicle.class);
+    }
+
+    @Override
+    protected void onBookmarkClick(View btn) {
+        super.onBookmarkClick(btn);
+
+        if (isBookmarked) {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.personDao().insert(person);
+                }
+            });
+        } else {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.personDao().delete(person);
+                }
+            });
+        }
     }
 }

@@ -1,5 +1,6 @@
 package be.kristofheyndels.mobdev.factory;
 
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ public class PlanetDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
+        super.checkIfBookmarked(planet);
         mLayoutInflater.inflate(R.layout.fragment_detail_planets, layout);
 
         ((TextView) layout.findViewById(R.id.tv_name)).setText(planet.getName());
@@ -37,5 +39,26 @@ public class PlanetDetails extends AbstractDetails {
 
         LinearLayout filmsListLayout = layout.findViewById(R.id.ll_films);
         createListFromUrlArray(detailFragment.getContext(), planet.getFilms(), filmsListLayout, Film.class);
+    }
+
+    @Override
+    protected void onBookmarkClick(View btn) {
+        super.onBookmarkClick(btn);
+
+        if (isBookmarked) {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.planetDao().insert(planet);
+                }
+            });
+        } else {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.planetDao().delete(planet);
+                }
+            });
+        }
     }
 }
