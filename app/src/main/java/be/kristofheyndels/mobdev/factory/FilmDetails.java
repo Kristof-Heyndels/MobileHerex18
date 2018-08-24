@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
-import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
+import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
+import be.kristofheyndels.mobdev.mobileherex18.R;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.Planet;
@@ -15,8 +16,6 @@ import be.kristofheyndels.mobdev.model.Species;
 import be.kristofheyndels.mobdev.model.Starship;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 import be.kristofheyndels.mobdev.model.Vehicle;
-import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
-import be.kristofheyndels.mobdev.mobileherex18.R;
 
 public class FilmDetails extends AbstractDetails {
     private Film film;
@@ -28,6 +27,7 @@ public class FilmDetails extends AbstractDetails {
     @Override
     public void generateLayout(DetailFragment detailFragment) {
         super.generateLayout(detailFragment);
+        super.checkIfBookmarked(film);
         mLayoutInflater.inflate(R.layout.fragment_detail_films, layout);
 
         ((TextView) layout.findViewById(R.id.tv_title)).setText(film.getTitle());
@@ -58,7 +58,22 @@ public class FilmDetails extends AbstractDetails {
 
     @Override
     protected void onBookmarkClick(View btn) {
-        Log.wtf("Details", "Adding this film to database: " + film.getDisplayName());
-        DetailsRoomDatabase.getDatabase(btn.getContext()).filmsDao().insertFilm(film);
+        super.onBookmarkClick(btn);
+
+        if (isBookmarked) {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.filmsDao().insert(film);
+                }
+            });
+        } else {
+            mExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    db.filmsDao().delete(film);
+                }
+            });
+        }
     }
 }

@@ -1,6 +1,5 @@
 package be.kristofheyndels.mobdev.factory;
 
-import android.arch.persistence.room.TypeConverter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +16,13 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
+import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
 import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
+import be.kristofheyndels.mobdev.mobileherex18.MainActivity;
 import be.kristofheyndels.mobdev.mobileherex18.R;
 import be.kristofheyndels.mobdev.model.JsonCallBack;
 import be.kristofheyndels.mobdev.model.SWAPI;
@@ -31,9 +33,14 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 public abstract class AbstractDetails implements Details {
     protected ScrollView layout;
 
-    protected LayoutInflater mLayoutInflater;
-    protected Button btnBookmark;
-    protected Boolean isBookmarked = false;
+    LayoutInflater mLayoutInflater;
+
+    Button btnBookmark;
+    Boolean isBookmarked = false;
+
+    // Vars for Room queries
+    DetailsRoomDatabase db = DetailsRoomDatabase.getDatabase(MainActivity.appContext);
+    Executor mExecutor = Executors.newSingleThreadExecutor();
 
     @Override
     public void generateLayout(DetailFragment detailFragment) {
@@ -52,7 +59,7 @@ public abstract class AbstractDetails implements Details {
         });
     }
 
-    protected void createListFromUrlArray(final Context c, final List<String> urlList, final LinearLayout ll, final Type type) {
+    void createListFromUrlArray(final Context c, final List<String> urlList, final LinearLayout ll, final Type type) {
         final ArrayList<String> displayList = new ArrayList<>();
 
         for (String s : urlList) {
@@ -72,20 +79,40 @@ public abstract class AbstractDetails implements Details {
         }
     }
 
-    protected void onBookmarkClick(View btn) {
-        isBookmarked = !isBookmarked;
-        if (isBookmarked) {
-            btn.setBackgroundResource(R.mipmap.bookmark_selected);
-        } else {
-            btn.setBackgroundResource(R.mipmap.bookmark_unselected);
-        }
-    }
-
     private void buildTextViews(Context c, LinearLayout parent, List<String> stringList) {
         for (String item : stringList) {
             TextView tv = new TextView(c);
             tv.setText(item);
             parent.addView(tv);
+        }
+    }
+
+    protected void onBookmarkClick(View view) {
+        isBookmarked = !isBookmarked;
+        updateBookmarkButton();
+    }
+
+    protected void checkIfBookmarked(final SwapiObject swo) {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                SwapiObject s = db.swapiDao().get(swo.getUrl());
+
+                if (s != null) {
+                    isBookmarked = true;
+                } else {
+                    isBookmarked = false;
+                }
+                updateBookmarkButton();
+            }
+        });
+    }
+
+    private void updateBookmarkButton() {
+        if (isBookmarked) {
+            btnBookmark.setBackgroundResource(R.mipmap.bookmark_selected);
+        } else {
+            btnBookmark.setBackgroundResource(R.mipmap.bookmark_unselected);
         }
     }
 }

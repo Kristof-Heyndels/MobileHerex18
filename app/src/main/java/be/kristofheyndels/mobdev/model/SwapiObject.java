@@ -1,9 +1,10 @@
 package be.kristofheyndels.mobdev.model;
 
+import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-public abstract class SwapiObject {
+public class SwapiObject {
 
     @PrimaryKey
     @NonNull

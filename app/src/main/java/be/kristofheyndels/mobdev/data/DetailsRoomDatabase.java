@@ -20,6 +20,7 @@ public abstract class DetailsRoomDatabase extends RoomDatabase {
     private static DetailsRoomDatabase INSTANCE;
 
     public abstract FilmsDao filmsDao();
+    public abstract SwapiDao swapiDao();
 
     public static DetailsRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
@@ -36,20 +37,6 @@ public abstract class DetailsRoomDatabase extends RoomDatabase {
     }
 
     @TypeConverter
-    public Date fromTimestamp(Long value) {
-        return value == null ? null : new Date(value);
-    }
-
-    @TypeConverter
-    public Long dateToTimestamp(Date date) {
-        if (date == null) {
-            return null;
-        } else {
-            return date.getTime();
-        }
-    }
-
-    @TypeConverter
     public static ArrayList<String> fromString(String value) {
         Type listType = new TypeToken<ArrayList<String>>() {
         }.getType();
@@ -61,5 +48,19 @@ public abstract class DetailsRoomDatabase extends RoomDatabase {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         return json;
+    }
+
+    @TypeConverter
+    static public Date fromTimestamp(Long value) {
+        return value == null ? null : new Date(value);
+    }
+
+    @TypeConverter
+    static public Long dateToTimestamp(Date date) {
+        if (date == null) {
+            return null;
+        } else {
+            return date.getTime();
+        }
     }
 }

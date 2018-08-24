@@ -1,6 +1,7 @@
 package be.kristofheyndels.mobdev.mobileherex18;
 
 import android.app.ActivityManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Build;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     public static final String URL = "https://swapi.co/api/";
     private static final String TAG = "MainActivity";
 
+    public static Context appContext;
     public static SwapiTab swapiTab;
 
     @Override
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        appContext = getApplicationContext();
 
         // Setting up ActionBar
         {

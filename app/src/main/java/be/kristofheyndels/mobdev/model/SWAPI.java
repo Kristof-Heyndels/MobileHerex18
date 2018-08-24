@@ -116,14 +116,16 @@ public class SWAPI {
         for (String f : mContext.fileList()) {
             if (f.equals(url)) {
                 File file = new File(url);
-                long lastModDate = file.lastModified();
+                return true;
 
+                /*
+                long lastModDate = file.lastModified();
                 // If current time has exceeded a day since file modification
                 if (lastModDate + DAYINMS < System.currentTimeMillis()) {
                     file.delete();
                     return false;
                 }
-                return true;
+                */
             }
         }
         return false;
