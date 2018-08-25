@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.model.JsonCallBack;
 import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.Film;
@@ -22,6 +23,12 @@ public class SpeciesDetails extends AbstractDetails  {
     private Species species;
 
     public SpeciesDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        species = (Species) swapiObject;
+    }
+
+    public SpeciesDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         species = (Species) swapiObject;
     }
 
@@ -76,5 +83,7 @@ public class SpeciesDetails extends AbstractDetails  {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

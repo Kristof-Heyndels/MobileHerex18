@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import be.kristofheyndels.mobdev.helpers.Categories;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 
 public class SwapiTab extends Fragment{
@@ -53,7 +54,7 @@ public class SwapiTab extends Fragment{
 
         if (savedInstanceState != null) {
             listFragment = (ListFragment) getActivity().getSupportFragmentManager().getFragment(savedInstanceState, LIST_FRAGMENT_TAG);
-            detailFragment.setSelectedItem(selectedItem);
+            detailFragment.setSelectedItem(selectedItem, Categories.selected);
         }
 
         if (listFragment == null) {
@@ -102,7 +103,7 @@ public class SwapiTab extends Fragment{
 
         activeFragment = ActiveFragment.DetailFragment;
         SwapiTab.selectedItem = selectedItem;
-        detailFragment.setSelectedItem(selectedItem);
+        detailFragment.setSelectedItem(selectedItem, Categories.selected);
     }
 
     public void onFragmentInteraction(Uri uri) {

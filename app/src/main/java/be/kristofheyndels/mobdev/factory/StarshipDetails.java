@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.Starship;
@@ -15,6 +16,12 @@ public class StarshipDetails extends AbstractDetails {
     private Starship starship;
 
     public StarshipDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        starship = (Starship) swapiObject;
+    }
+
+    public StarshipDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         starship = (Starship) swapiObject;
     }
 
@@ -64,5 +71,7 @@ public class StarshipDetails extends AbstractDetails {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

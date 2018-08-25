@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.model.JsonCallBack;
 import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.Film;
@@ -24,6 +25,12 @@ public class PeopleDetails extends AbstractDetails {
     private Person person;
 
     public PeopleDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        person = (Person) swapiObject;
+    }
+
+    public PeopleDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         person = (Person) swapiObject;
     }
 
@@ -84,5 +91,7 @@ public class PeopleDetails extends AbstractDetails {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

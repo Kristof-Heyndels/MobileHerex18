@@ -1,8 +1,11 @@
 package be.kristofheyndels.mobdev.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+
+import be.kristofheyndels.mobdev.helpers.Categories;
 
 public class SwapiObject {
 
@@ -11,6 +14,9 @@ public class SwapiObject {
     private String url;
     private String created;
     private String edited;
+
+    @Ignore
+    private Categories.SelectedCategory category;
 
     public String getUrl() {
         return url;
@@ -38,5 +44,13 @@ public class SwapiObject {
 
     public String getDisplayName() {
         return null;
+    }
+
+    public Categories.SelectedCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(Categories.SelectedCategory category) {
+        this.category = category;
     }
 }

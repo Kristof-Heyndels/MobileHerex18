@@ -21,6 +21,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import be.kristofheyndels.mobdev.data.DetailsRoomDatabase;
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
+import be.kristofheyndels.mobdev.helpers.Categories;
 import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
 import be.kristofheyndels.mobdev.mobileherex18.MainActivity;
 import be.kristofheyndels.mobdev.mobileherex18.R;
@@ -31,16 +33,27 @@ import be.kristofheyndels.mobdev.model.SwapiObject;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public abstract class AbstractDetails implements Details {
+    public static List<BookmarkObserver> observers = new ArrayList<>();
+
+    protected SwapiObject selectedObject;
     protected ScrollView layout;
 
-    LayoutInflater mLayoutInflater;
+    protected LayoutInflater mLayoutInflater;
 
-    Button btnBookmark;
-    Boolean isBookmarked = false;
+    protected Button btnBookmark;
+    protected Boolean isBookmarked = false;
 
-    // Vars for Room queries
-    DetailsRoomDatabase db = DetailsRoomDatabase.getDatabase(MainActivity.appContext);
-    Executor mExecutor = Executors.newSingleThreadExecutor();
+    protected DetailsRoomDatabase db = DetailsRoomDatabase.getDatabase(MainActivity.appContext);
+    protected Executor mExecutor = Executors.newSingleThreadExecutor();
+
+    public AbstractDetails(SwapiObject swapiObject) {
+        this.selectedObject = swapiObject;
+    }
+
+    public AbstractDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        this.selectedObject = swapiObject;
+        this.observers.add(observer);
+    }
 
     @Override
     public void generateLayout(DetailFragment detailFragment) {
@@ -119,5 +132,11 @@ public abstract class AbstractDetails implements Details {
                 }
             }
         });
+    }
+
+    protected void notifyObservers(){
+        for(BookmarkObserver o : observers) {
+            o.bookmarkToggled(isBookmarked, selectedObject.getCategory());
+        }
     }
 }

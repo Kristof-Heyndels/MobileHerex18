@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.Planet;
@@ -15,6 +16,12 @@ public class PlanetDetails extends AbstractDetails {
     private Planet planet;
 
     public PlanetDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        planet = (Planet) swapiObject;
+    }
+
+    public PlanetDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         planet = (Planet) swapiObject;
     }
 
@@ -60,5 +67,7 @@ public class PlanetDetails extends AbstractDetails {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

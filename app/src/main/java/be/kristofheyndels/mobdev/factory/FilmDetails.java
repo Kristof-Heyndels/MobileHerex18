@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.mobileherex18.DetailFragment;
 import be.kristofheyndels.mobdev.mobileherex18.R;
 import be.kristofheyndels.mobdev.model.Film;
@@ -21,6 +22,12 @@ public class FilmDetails extends AbstractDetails {
     private Film film;
 
     public FilmDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        film = (Film) swapiObject;
+    }
+
+    public FilmDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         film = (Film) swapiObject;
     }
 
@@ -75,5 +82,7 @@ public class FilmDetails extends AbstractDetails {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

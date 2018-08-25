@@ -4,6 +4,7 @@
     <string name="display_label">Display Name</string>
     <string name="action_clear_cache">Clear Cache</string>
     <string name="actin_clear_data">Clear Data</string>
+    <string name="bookmarked_details_tag">bookmarked_details</string>
 
     <!-- fragment_details_films -->
     <string name="title_label">Title: </string>

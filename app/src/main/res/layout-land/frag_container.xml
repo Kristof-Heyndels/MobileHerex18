@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:id="@+id/frag_detail"
-        android:layout_width="0px"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.6"
         android:orientation="horizontal" />

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import be.kristofheyndels.mobdev.factory.Details;
 import be.kristofheyndels.mobdev.factory.DetailsFactory;
+import be.kristofheyndels.mobdev.helpers.Categories;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 
 
@@ -56,22 +57,24 @@ public class DetailFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-    
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
-    public void setSelectedItem(SwapiObject selectedItem) {
+    public void setSelectedItem(SwapiObject selectedItem, Categories.SelectedCategory selectedCategory) {
         this.selectedItem = selectedItem;
+        if (this.selectedItem != null)
+            this.selectedItem.setCategory(selectedCategory);
         if (this.getView() != null) {
             fillDetails();
         }
     }
 
-    private void fillDetails(){
+    private void fillDetails() {
         DetailsFactory factory = new DetailsFactory();
-        Details details = factory.buildDetails(selectedItem);
+        Details details = factory.buildDetails(selectedItem, selectedItem.getCategory());
         details.generateLayout(this);
     }
 }

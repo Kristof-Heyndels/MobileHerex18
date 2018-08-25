@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import be.kristofheyndels.mobdev.helpers.BookmarkObserver;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.SwapiObject;
@@ -15,6 +16,12 @@ public class VehicleDetails extends AbstractDetails {
     private Vehicle vehicle;
 
     public VehicleDetails(SwapiObject swapiObject) {
+        super(swapiObject);
+        vehicle = (Vehicle) swapiObject;
+    }
+
+    public VehicleDetails(SwapiObject swapiObject, BookmarkObserver observer) {
+        super(swapiObject, observer);
         vehicle = (Vehicle) swapiObject;
     }
 
@@ -62,5 +69,7 @@ public class VehicleDetails extends AbstractDetails {
                 }
             });
         }
+
+        notifyObservers();
     }
 }

@@ -20,12 +20,12 @@
         android:layout_marginStart="10dp"
         android:layout_weight="0.1" />
 
-    <fragment
-        android:id="@+id/frag_detail"
-        android:name="be.kristofheyndels.mobdev.mobileherex18.DetailFragment"
+    <LinearLayout
+        android:id="@+id/frag_detail_bookmark"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75" />
+        android:layout_weight="0.75"
+        android:orientation="horizontal" />
 
 </LinearLayout>
 
