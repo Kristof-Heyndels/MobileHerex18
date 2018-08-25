@@ -66,15 +66,10 @@ public class SwapiTab extends Fragment{
             } else {
                 trans.replace(R.id.frag_container, detailFragment);
             }
-            trans.addToBackStack(null);
             trans.commit();
         } else {
             trans.replace(R.id.frag_container, listFragment);
-            trans.addToBackStack(null);
-
             trans.replace(R.id.frag_detail, detailFragment);
-            trans.addToBackStack(null);
-
             trans.commit();
         }
     }

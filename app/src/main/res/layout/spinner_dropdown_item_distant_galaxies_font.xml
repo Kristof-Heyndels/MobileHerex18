@@ -1,0 +1,12 @@
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/text1"
+    style="@style/AppTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:lines="1"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    android:textSize="24sp"
+    app:fontFamily="@font/sf_distant_galaxy_family"
+    app:paddingStart="5dp" />

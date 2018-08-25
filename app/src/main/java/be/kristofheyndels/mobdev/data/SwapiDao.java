@@ -3,6 +3,9 @@ package be.kristofheyndels.mobdev.data;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Query;
 
+import java.util.List;
+
+import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 
 @Dao

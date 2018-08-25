@@ -17,9 +17,9 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         switch (i) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0:
                 return new SwapiTab();
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 1:
                 return new BookmarkTab();
             default:
                 return null;
@@ -34,9 +34,9 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int i) {
         switch (i) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0:
                 return "SWAPI";
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 1:
                 return "Bookmarks";
             default:
                 return "";

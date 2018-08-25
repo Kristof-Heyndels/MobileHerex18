@@ -1,0 +1,13 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@android:id/text1"
+    style="?android:attr/spinnerDropDownItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:lines="1"
+    android:singleLine="true"
+    android:textAlignment="inherit"
+    app:autoSizePresetSizes="@array/autosize_text_sizes"
+    app:autoSizeTextType="uniform"
+    app:fontFamily="@font/sf_distant_galaxy_family"
+    app:fontStyle="italic" />

@@ -169,7 +169,6 @@ public class ListFragment extends Fragment {
     }
 
     private void populateList() {
-        //TODO sometimes crashes app
         ArrayAdapter adapter = new MyArrayAdapter(getContext(), R.layout.list_item, R.id.tv_list_display, resultList);
         lvResults.setAdapter(adapter);
     }
