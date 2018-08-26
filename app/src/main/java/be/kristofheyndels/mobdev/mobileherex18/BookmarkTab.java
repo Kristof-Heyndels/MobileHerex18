@@ -116,7 +116,7 @@ public class BookmarkTab extends Fragment implements BookmarkObserver {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         if (isVisible()) {
-            populateCategoryItemsStart();
+            //populateCategoryItemsStart();
         }
     }
 
@@ -138,11 +138,8 @@ public class BookmarkTab extends Fragment implements BookmarkObserver {
     private void populateCategoriesEnd(Cursor c) {
         ArrayList<String> bookmarkedCategories = new ArrayList<>();
 
-        if (c.moveToFirst()) {
-            while (!c.isAfterLast()) {
-                bookmarkedCategories.add(c.getString(0));
-                c.moveToNext();
-            }
+        while (c.moveToNext()) {
+            bookmarkedCategories.add(c.getString(0));
         }
 
         final ArrayAdapter<String> catAdapter = new MyArrayAdapter(getContext(), R.layout.spinner_item, bookmarkedCategories);
