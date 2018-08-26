@@ -13,7 +13,13 @@
         android:id="@+id/action_clear_data"
         android:onClick="onClearDataButtonClicked"
         android:orderInCategory="101"
-        android:title="@string/actin_clear_data"
+        android:title="@string/action_clear_data"
         android:visible="true"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_search"
+        android:title="@string/search_swapi_title"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom"/>
 </menu>

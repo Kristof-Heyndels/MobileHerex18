@@ -6,11 +6,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -23,16 +27,16 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import be.kristofheyndels.mobdev.model.JsonCallBack;
-import be.kristofheyndels.mobdev.helpers.MyArrayAdapter;
-import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.helpers.Categories;
+import be.kristofheyndels.mobdev.helpers.MyArrayAdapter;
 import be.kristofheyndels.mobdev.model.Film;
 import be.kristofheyndels.mobdev.model.FilmResults;
+import be.kristofheyndels.mobdev.model.JsonCallBack;
 import be.kristofheyndels.mobdev.model.Person;
 import be.kristofheyndels.mobdev.model.PersonResults;
 import be.kristofheyndels.mobdev.model.Planet;
 import be.kristofheyndels.mobdev.model.PlanetResults;
+import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.Species;
 import be.kristofheyndels.mobdev.model.SpeciesResults;
 import be.kristofheyndels.mobdev.model.Starship;
@@ -44,6 +48,7 @@ import be.kristofheyndels.mobdev.model.VehicleResults;
 public class ListFragment extends Fragment {
 
     private static final String TAG = "ListFragment";
+    private static final String SEARCH_QUERY_TAG = "searchQuery";
 
     private Spinner dropCategory;
     private ListView lvResults;
@@ -52,6 +57,7 @@ public class ListFragment extends Fragment {
 
     private OnUserSelectionMade mListener;
 
+    private String searchQuery;
     private int selectedCategory = 0;
 
     public ListFragment() {
@@ -78,7 +84,7 @@ public class ListFragment extends Fragment {
         dropCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                buildListAdapter((String)dropCategory.getSelectedItem());
+                buildListAdapter((String) dropCategory.getSelectedItem());
                 mListener.onUserCategorySelectionMade();
             }
 
@@ -89,7 +95,7 @@ public class ListFragment extends Fragment {
         });
 
         lvResults = view.findViewById(R.id.lv_results);
-        lvResults.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        lvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = (String) lvResults.getItemAtPosition(i);
@@ -119,8 +125,9 @@ public class ListFragment extends Fragment {
             selectedCategory = savedInstanceState.getInt("selectedItem");
             resultList = savedInstanceState.getStringArrayList("list");
 
+            searchQuery = savedInstanceState.getString(SEARCH_QUERY_TAG);
+
             populateSpinner();
-            populateList();
         }
     }
 
@@ -147,6 +154,7 @@ public class ListFragment extends Fragment {
 
         outState.putInt("selectedItem", dropCategory.getSelectedItemPosition());
         outState.putStringArrayList("list", ((MyArrayAdapter) lvResults.getAdapter()).getStringList());
+        outState.putString(SEARCH_QUERY_TAG, searchQuery);
     }
 
     private void populateSpinner() {
@@ -157,15 +165,19 @@ public class ListFragment extends Fragment {
     }
 
     private void buildListAdapter(final String selectedCategory) {
-        //Filling List with selected category items
-        SWAPI.getResultsFromURL(getContext(), Categories.getValueFromKey(selectedCategory), new JsonCallBack() {
-            @Override
-            public void onSuccess(JSONObject result) {
-               resultList = buildResultList(selectedCategory, result);
-                java.util.Collections.sort(resultList);
-                populateList();
-            }
-        });
+        if (searchQuery == null) {
+            //Filling List with selected category items
+            SWAPI.getResultsFromURL(getContext(), Categories.getValueFromKey(selectedCategory), new JsonCallBack() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    resultList = buildResultList(selectedCategory, result);
+                    java.util.Collections.sort(resultList);
+                    populateList();
+                }
+            });
+        } else {
+            parseSearchResult(searchQuery);
+        }
     }
 
     private void populateList() {
@@ -231,8 +243,28 @@ public class ListFragment extends Fragment {
         return returnList;
     }
 
+    public void parseSearchResult(String query) {
+        searchQuery = query;
+        final String cat = ((String) dropCategory.getSelectedItem()).toLowerCase();
+        String searchUrl = MainActivity.URL + cat + "?search=" + searchQuery;
+        SWAPI.getResultsFromUrl(getContext(), searchUrl, false, new JsonCallBack() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                resultList = buildResultList(cat, result);
+                java.util.Collections.sort(resultList);
+                populateList();
+            }
+        });
+    }
+
+    public void closeSearch() {
+        searchQuery = null;
+        buildListAdapter(((String) dropCategory.getSelectedItem()));
+    }
+
     public interface OnUserSelectionMade {
         void onUserListItemSelectionMade(SwapiObject swapiObject);
+
         void onUserCategorySelectionMade();
     }
 }

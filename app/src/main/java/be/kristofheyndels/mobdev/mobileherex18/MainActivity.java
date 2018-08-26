@@ -12,14 +12,24 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.Collections;
 import java.util.Objects;
 
 import be.kristofheyndels.mobdev.helpers.MyPagerAdapter;
+import be.kristofheyndels.mobdev.model.JsonCallBack;
+import be.kristofheyndels.mobdev.model.Person;
+import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 
 
@@ -65,6 +75,31 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem action_search = menu.findItem(R.id.action_search);
+        SearchView swapi_search = (SearchView) action_search.getActionView();
+
+        swapi_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                swapiTab.parseSearchResult(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                return true;
+            }
+        });
+        swapi_search.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                swapiTab.closeSearch();
+                return false;
+            }
+        });
+
         return true;
     }
 

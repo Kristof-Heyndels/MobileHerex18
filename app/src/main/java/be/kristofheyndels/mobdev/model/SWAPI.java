@@ -26,11 +26,14 @@ public class SWAPI {
     private static final String TAG = "SWAPI";
 
     public static void getResultsFromURL(final Context mContext, final String url, final JsonCallBack jsonCallBack) {
+        getResultsFromUrl(mContext, url, true, jsonCallBack);
+    }
 
+    public static void getResultsFromUrl(final Context mContext, final String url, final boolean cacheResults, final JsonCallBack jsonCallBack) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(mContext);
 
-        if (checkCachedFile(mContext, url)) {
+        if (cacheResults && checkCachedFile(mContext, url)) {
             try {
                 String responseString = "";
                 String fileName = url.replace('/', '-');
@@ -67,7 +70,10 @@ public class SWAPI {
                         @Override
                         public void onResponse(String response) {
                             try {
-                                cacheJsonString(mContext, url, response);
+                                if (cacheResults) {
+                                    cacheJsonString(mContext, url, response);
+                                }
+
                                 JSONObject jsonResponse = new JSONObject(response);
                                 jsonCallBack.onSuccess(jsonResponse);
 
