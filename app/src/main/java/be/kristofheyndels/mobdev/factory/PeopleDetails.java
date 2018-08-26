@@ -81,6 +81,7 @@ public class PeopleDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.personDao().insert(person);
+                    notifyObservers();
                 }
             });
         } else {
@@ -88,10 +89,9 @@ public class PeopleDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.personDao().delete(person);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }

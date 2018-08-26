@@ -73,6 +73,7 @@ public class SpeciesDetails extends AbstractDetails  {
                 @Override
                 public void run() {
                     db.speciesDao().insert(species);
+                    notifyObservers();
                 }
             });
         } else {
@@ -80,10 +81,9 @@ public class SpeciesDetails extends AbstractDetails  {
                 @Override
                 public void run() {
                     db.speciesDao().delete(species);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }

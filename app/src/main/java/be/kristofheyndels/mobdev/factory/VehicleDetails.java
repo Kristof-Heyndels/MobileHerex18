@@ -59,6 +59,7 @@ public class VehicleDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.vehicleDao().insert(vehicle);
+                    notifyObservers();
                 }
             });
         } else {
@@ -66,10 +67,9 @@ public class VehicleDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.vehicleDao().delete(vehicle);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }

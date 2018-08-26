@@ -212,7 +212,6 @@ public class BookmarkTab extends Fragment implements BookmarkObserver {
     @Override
     public void bookmarkToggled(Boolean isBookMarked, Categories.SelectedCategory selectedCategory) {
         if (selectedCategory == Categories.SelectedCategory.values()[this.selectedCategory + 1])
-            //TODO figure out why this won't work
             populateCategoryItemsStart();
     }
 }

@@ -57,6 +57,7 @@ public class PlanetDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.planetDao().insert(planet);
+                    notifyObservers();
                 }
             });
         } else {
@@ -64,10 +65,9 @@ public class PlanetDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.planetDao().delete(planet);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }

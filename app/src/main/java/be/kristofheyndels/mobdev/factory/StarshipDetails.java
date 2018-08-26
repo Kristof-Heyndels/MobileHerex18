@@ -61,6 +61,7 @@ public class StarshipDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.starshipDao().insert(starship);
+                    notifyObservers();
                 }
             });
         } else {
@@ -68,10 +69,9 @@ public class StarshipDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.starshipDao().delete(starship);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }

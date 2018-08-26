@@ -72,6 +72,7 @@ public class FilmDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.filmsDao().insert(film);
+                    notifyObservers();
                 }
             });
         } else {
@@ -79,10 +80,9 @@ public class FilmDetails extends AbstractDetails {
                 @Override
                 public void run() {
                     db.filmsDao().delete(film);
+                    notifyObservers();
                 }
             });
         }
-
-        notifyObservers();
     }
 }
