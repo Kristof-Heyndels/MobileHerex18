@@ -16,10 +16,18 @@
         android:title="@string/action_clear_data"
         android:visible="true"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_share_facebook"
+        android:onClick="onFacebookShareClicked"
+        android:orderInCategory="102"
+        android:title="@string/action_share_facebook"
+        android:visible="true"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_search"
         android:title="@string/search_swapi_title"
         app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
+
 </menu>

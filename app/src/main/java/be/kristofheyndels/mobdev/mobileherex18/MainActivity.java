@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,24 +13,27 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import org.json.JSONObject;
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import java.io.File;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.Objects;
 
 import be.kristofheyndels.mobdev.helpers.MyPagerAdapter;
-import be.kristofheyndels.mobdev.model.JsonCallBack;
-import be.kristofheyndels.mobdev.model.Person;
-import be.kristofheyndels.mobdev.model.SWAPI;
 import be.kristofheyndels.mobdev.model.SwapiObject;
 
 
@@ -41,13 +45,15 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     }
 
     public static final String URL = "https://swapi.co/api/";
-    private static final String TAG = "MainActivity";
+    private static final String EMAIL = "email";
 
     public static Context appContext;
     public static Activity appActivity;
 
     public static SwapiTab swapiTab;
     public static BookmarkTab bookmarkTab;
+
+    private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,36 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
         setContentView(R.layout.activity_main);
         appContext = getApplicationContext();
         appActivity = this;
+
+        //Facebook stuff
+        {
+            callbackManager = CallbackManager.Factory.create();
+            LoginManager.getInstance().registerCallback(callbackManager,
+                    new FacebookCallback<LoginResult>() {
+                        @Override
+                        public void onSuccess(LoginResult loginResult) {
+                            // App code
+                            Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            // App code
+                        }
+
+                        @Override
+                        public void onError(FacebookException exception) {
+                            // App code
+                            Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+            boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+            if (isLoggedIn) {
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+            }
+        }
 
         // Setting up ActionBar
         {
@@ -139,6 +175,30 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
                 .show();
     }
 
+    public void onFacebookShareClicked(MenuItem item) {
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://swapi.co/"))
+                .build();
+
+        ShareDialog shareDialog = new ShareDialog(this);
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                Toast.makeText(getApplicationContext(), "Thoughts shared!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancel() {
+            }
+
+            @Override
+            public void onError(FacebookException e) {
+                e.printStackTrace();
+            }
+        });
+        shareDialog.show(content);
+    }
+
     private void deleteData() {
         if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
             ((ActivityManager) Objects.requireNonNull(getApplicationContext().getSystemService(ACTIVITY_SERVICE)))
@@ -188,5 +248,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }

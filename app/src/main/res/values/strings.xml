@@ -5,6 +5,7 @@
     <string name="action_clear_cache">Clear Cache</string>
     <string name="action_clear_data">Clear Data</string>
     <string name="bookmarked_details_tag">bookmarked_details</string>
+    <string name="search_swapi_title">Search SWAPI</string>
 
     <!-- fragment_details_films -->
     <string name="title_label">Title: </string>
@@ -71,6 +72,10 @@
 
     <!-- fragment_details_starships -->
     <string name="vehicle_class_label">Vehicle Class:</string>
-    <string name="search_swapi_title">Search SWAPI</string>
+
+    <!-- facebook strings -->
+    <string name="facebook_app_id">514356039005244</string>
+    <string name="fb_login_protocol_scheme">fb514356039005244</string>
+    <string name="action_share_facebook">Share your thoughts on Facebook</string>
 
 </resources>
