@@ -45,11 +45,12 @@ import be.kristofheyndels.mobdev.model.SwapiObject;
 import be.kristofheyndels.mobdev.model.Vehicle;
 import be.kristofheyndels.mobdev.model.VehicleResults;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String TAG = "ListFragment";
     private static final String SEARCH_QUERY_TAG = "searchQuery";
 
+    private  SwipeRefreshLayout swipeLayout;
     private Spinner dropCategory;
     private ListView lvResults;
     private TextView tvResultsInfoTag;
@@ -82,6 +83,9 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        swipeLayout = view.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
 
         tvInternetConnectionInfoTag = view.findViewById(R.id.tv_internet_connection_info_tag);
         tvResultsInfoTag = view.findViewById(R.id.tv_results_info_tag);
@@ -293,6 +297,12 @@ public class ListFragment extends Fragment {
     public void closeSearch() {
         searchQuery = null;
         buildListAdapter(((String) dropCategory.getSelectedItem()));
+    }
+
+    @Override
+    public void onRefresh() {
+        categoryLookup();
+        swipeLayout.setRefreshing(false);
     }
 
     public interface OnUserSelectionMade {
