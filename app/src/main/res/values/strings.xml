@@ -6,6 +6,7 @@
     <string name="action_clear_data">Clear Data</string>
     <string name="bookmarked_details_tag">bookmarked_details</string>
     <string name="search_swapi_title">Search SWAPI</string>
+    <string name="action_share_facebook">Share your thoughts on Facebook</string>
 
     <!-- fragment_details_films -->
     <string name="title_label">Title: </string>
@@ -76,6 +77,5 @@
     <!-- facebook strings -->
     <string name="facebook_app_id">514356039005244</string>
     <string name="fb_login_protocol_scheme">fb514356039005244</string>
-    <string name="action_share_facebook">Share your thoughts on Facebook</string>
 
 </resources>

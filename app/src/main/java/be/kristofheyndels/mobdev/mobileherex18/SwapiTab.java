@@ -29,8 +29,6 @@ public class SwapiTab extends Fragment{
     private ListFragment listFragment;
     private DetailFragment detailFragment;
 
-    private String searchQuery;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +107,6 @@ public class SwapiTab extends Fragment{
     }
 
     public void parseSearchResult(String query) {
-        searchQuery = query;
         listFragment.parseSearchResult(query);
     }
 

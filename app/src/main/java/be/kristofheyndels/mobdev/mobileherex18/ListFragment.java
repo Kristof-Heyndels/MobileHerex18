@@ -1,21 +1,21 @@
 package be.kristofheyndels.mobdev.mobileherex18;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -52,6 +52,9 @@ public class ListFragment extends Fragment {
 
     private Spinner dropCategory;
     private ListView lvResults;
+    private TextView tvResultsInfoTag;
+    private TextView tvInternetConnectionInfoTag;
+
     private HashMap<String, SwapiObject> resultMap;
     private List<String> resultList;
 
@@ -80,6 +83,9 @@ public class ListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        tvInternetConnectionInfoTag = view.findViewById(R.id.tv_internet_connection_info_tag);
+        tvResultsInfoTag = view.findViewById(R.id.tv_results_info_tag);
+
         dropCategory = view.findViewById(R.id.drop_category);
         dropCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -104,23 +110,7 @@ public class ListFragment extends Fragment {
         });
 
         if (savedInstanceState == null) {
-            SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
-                @Override
-                public void onSuccess(JSONObject result) {
-                    Iterator<String> keys = result.keys();
-
-                    try {
-                        while (keys.hasNext()) {
-                            String name = keys.next();
-                            Categories.addEntry(name, result.getString(name));
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    populateSpinner();
-                }
-            });
+            categoryLookup();
         } else {
             selectedCategory = savedInstanceState.getInt("selectedItem");
             resultList = savedInstanceState.getStringArrayList("list");
@@ -153,8 +143,42 @@ public class ListFragment extends Fragment {
         super.onSaveInstanceState(outState);
 
         outState.putInt("selectedItem", dropCategory.getSelectedItemPosition());
-        outState.putStringArrayList("list", ((MyArrayAdapter) lvResults.getAdapter()).getStringList());
+
+        MyArrayAdapter adapterToSave = ((MyArrayAdapter) lvResults.getAdapter());
+        if (adapterToSave != null)
+            outState.putStringArrayList("list", adapterToSave.getStringList());
+
         outState.putString(SEARCH_QUERY_TAG, searchQuery);
+    }
+
+    private void categoryLookup() {
+
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+            tvInternetConnectionInfoTag.setText("");
+        } else {
+            tvInternetConnectionInfoTag.setText("<Connection issue detected, results might not display>");
+        }
+
+        SWAPI.getResultsFromURL(getContext(), MainActivity.URL, new JsonCallBack() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Iterator<String> keys = result.keys();
+
+                try {
+                    while (keys.hasNext()) {
+                        String name = keys.next();
+                        Categories.addEntry(name, result.getString(name));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                populateSpinner();
+            }
+        });
     }
 
     private void populateSpinner() {
@@ -245,7 +269,10 @@ public class ListFragment extends Fragment {
 
     public void parseSearchResult(String query) {
         searchQuery = query;
-        final String cat = ((String) dropCategory.getSelectedItem()).toLowerCase();
+        String selectedItem = (String) dropCategory.getSelectedItem();
+
+        if (selectedItem == null) return;
+        final String cat = (selectedItem.toLowerCase());
         String searchUrl = MainActivity.URL + cat + "?search=" + searchQuery;
         SWAPI.getResultsFromUrl(getContext(), searchUrl, false, new JsonCallBack() {
             @Override
@@ -253,6 +280,12 @@ public class ListFragment extends Fragment {
                 resultList = buildResultList(cat, result);
                 java.util.Collections.sort(resultList);
                 populateList();
+
+                if (resultList.size() == 0) {
+                    tvResultsInfoTag.setText("No Results");
+                } else {
+                    tvResultsInfoTag.setText("");
+                }
             }
         });
     }
