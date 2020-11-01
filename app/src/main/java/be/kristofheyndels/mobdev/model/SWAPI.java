@@ -33,6 +33,7 @@ public class SWAPI {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(mContext);
 
+        System.out.println("trying to query with url: " + url);
         if (cacheResults && checkCachedFile(mContext, url)) {
             try {
                 String responseString = "";

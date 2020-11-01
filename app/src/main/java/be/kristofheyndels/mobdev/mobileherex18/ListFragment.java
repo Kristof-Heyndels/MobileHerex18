@@ -174,7 +174,11 @@ public class ListFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 try {
                     while (keys.hasNext()) {
                         String name = keys.next();
-                        Categories.addEntry(name, result.getString(name));
+
+                        //Redirecting http to https because fuck me
+                        String url = "https" + result.getString(name).substring(4);
+
+                        Categories.addEntry(name,url);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
