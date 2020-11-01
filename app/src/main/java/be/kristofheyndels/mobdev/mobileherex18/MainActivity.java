@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnUs
         DetailFragment
     }
 
-    public static final String URL = "https://swapi.co/api/";
+    public static final String URL = "https://swapi.dev/api/";
     private static final String EMAIL = "email";
 
     public static Context appContext;
